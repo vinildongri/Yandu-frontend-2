@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const images = [
@@ -9,6 +10,9 @@ const images = [
 ];
 
 const Hero = () => {
+
+const router = useRouter();
+
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -55,7 +59,10 @@ const Hero = () => {
             <button className="px-8 py-3 m-3 bg-[#0d6efd] cursor-pointer text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300 hover:-translate-y-0.5">
               Hire a Freelancer
             </button>
-            <button className="px-8 py-3 m-3 bg-green-600 cursor-pointer text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300 hover:-translate-y-0.5">
+            <button 
+              onClick={()=> router.push("/contact")}
+              className="px-8 py-3 m-3 bg-green-600 cursor-pointer text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300 hover:-translate-y-0.5"
+            >
               Start now for free
             </button>
           </div>

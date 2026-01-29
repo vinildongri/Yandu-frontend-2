@@ -1,9 +1,13 @@
+"use client"
 import React from 'react'
 import Link from "next/link"
+import { useRouter } from 'next/navigation'
 
 export const CTA = () => {
-  return (
 
+  const router = useRouter();
+
+  return (
     <section className="w-full flex justify-center px-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -19,7 +23,10 @@ export const CTA = () => {
               Trusted globally by over 1 million businesses, small to large
             </h1>
 
-            <button className="bg-blue-500 hover:bg-blue-600 text-white cursor-pointer font-bold py-3 px-8 rounded text-sm md:text-base transition-colors">
+            <button 
+              onClick={()=> router.push("/contact")}
+              className="bg-blue-500 hover:bg-blue-600 text-white cursor-pointer font-bold py-3 px-8 rounded text-sm md:text-base transition-colors"
+            >
               START NOW FOR FREE
             </button>
           </div>

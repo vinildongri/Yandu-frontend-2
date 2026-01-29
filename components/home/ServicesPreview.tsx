@@ -64,7 +64,7 @@ const scrollRef = useRef<HTMLDivElement | null>(null);
       {/* Cards – Horizontal Scroll */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth"
+        className="flex gap-6 overflow-x-auto  pb-4 scroll-smooth"
       >
         {categories.map((cat, index) => (
           <div
