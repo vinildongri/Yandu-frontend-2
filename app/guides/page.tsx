@@ -19,7 +19,7 @@ const CATEGORIES = ["All", "Development", "Database", "Creative", "Strategy"];
 
 const guidesData: Guide[] = [
   {
-    id: "webDevelopment",
+    id: "web-app-dev",
     title: "Web Development: Why Speed Matters",
     excerpt: "How we optimize React and Next.js sites to load under 2 seconds for better SEO.",
     category: "Development",
@@ -27,17 +27,8 @@ const guidesData: Guide[] = [
     readTime: "4 min read",
     date: "Jan 28, 2026",
   },
-   {
-    id: "2",
-    title: "Mobile App: Cross-Platform vs Native",
-    excerpt: "Choosing between Flutter/React Native and Swift/Kotlin for your next app.",
-    category: "Development",
-    tag: "App Development",
-    readTime: "8 min read",
-    date: "Jan 10, 2026",
-  },
   {
-    id: "3",
+    id: "/video-editing",
     title: "Short-Form Video Strategy",
     excerpt: "How to edit engaging Reels and Shorts that drive social media growth.",
     category: "Creative",
@@ -46,7 +37,16 @@ const guidesData: Guide[] = [
     date: "Jan 15, 2026",
   },
   {
-    id: "4",
+    id: "/web-app-dev",
+    title: "Mobile App: Cross-Platform vs Native",
+    excerpt: "Choosing between Kotlin/Swift and Flutter/React Native for your next app.",
+    category: "Development",
+    tag: "App Development",
+    readTime: "8 min read",
+    date: "Jan 10, 2026",
+  },
+  {
+    id: "/api-backend-dev",
     title: "Securing Your Backend API",
     excerpt: "Essential security practices we implement for every Node.js and Python backend.",
     category: "Development",
@@ -55,7 +55,7 @@ const guidesData: Guide[] = [
     date: "Jan 20, 2026",
   },
   {
-    id: "5",
+    id: "/logo-design",
     title: "The 2026 Logo Design Trends",
     excerpt: "Minimalism vs. Abstract: What works best for startup branding this year.",
     category: "Creative",
@@ -64,7 +64,7 @@ const guidesData: Guide[] = [
     date: "Jan 25, 2026",
   },
   {
-    id: "6",
+    id: "/social-media",
     title: "Social Media Growth Hacks",
     excerpt: "Organic strategies to grow your brand presence without breaking the bank.",
     category: "Strategy",
@@ -73,7 +73,7 @@ const guidesData: Guide[] = [
     date: "Jan 05, 2026",
   },
   {
-    id: "7",
+    id: "/database",
     title: "SQL vs NoSQL: Choosing the Right Database",
     excerpt: "When to use PostgreSQL vs MongoDB for your startup's data architecture.",
     category: "Database", 
@@ -82,7 +82,7 @@ const guidesData: Guide[] = [
     date: "Jan 26, 2026",
   },
   {
-    id: "8",
+    id: "/graphic-design",
     title: "The Psychology of UI/UX",
     excerpt: "Understanding how color, spacing, and micro-interactions influence user decisions.",
     category: "Creative",

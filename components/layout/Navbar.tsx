@@ -21,9 +21,9 @@ const Navbar = () => {
       href: '/services', 
       hasDropdown: true,
       items: [
-        { name: 'Web Development', href: '/services/web-dev', icon: <Code className="w-4 h-4" />, desc: 'Custom apps & sites' },
-        { name: 'App Development', href: '/services/app-dev', icon: <Smartphone className="w-4 h-4" />, desc: 'iOS & Android solutions' },
-        { name: 'API & Backend Systems', href: '/services/backend', icon: <Server className="w-4 h-4" />, desc: 'Robust server architecture' },
+        { name: 'Web & App Development', href: '/services/web-app-dev', icon: <Code className="w-4 h-4" />, desc: 'Custom apps & sites' },
+        // { name: 'App Development', href: '/services/app-dev', icon: <Smartphone className="w-4 h-4" />, desc: 'iOS & Android solutions' },
+        { name: 'API & Backend Systems', href: '/services/api-backend-dev', icon: <Server className="w-4 h-4" />, desc: 'Robust server architecture' },
         { name: 'Video Editing', href: '/services/video-editing', icon: <Video className="w-4 h-4" />, desc: 'Professional post-production' },
         { name: 'Logo Design', href: '/services/logo-design', icon: <Palette className="w-4 h-4" />, desc: 'Brand identity & logos' },
         { name: 'Graphic Design', href: '/services/graphic-design', icon: <Layout className="w-4 h-4" />, desc: 'Visual storytelling' },

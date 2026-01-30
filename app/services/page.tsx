@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const categories = [
-  { title: "Web Development", image: "/servicesPics/webDev.jpg", href: "/services/web-dev" },
-  { title: "App Development", image: "/servicesPics/appDev.jpg", href: "/services/app-dev" },
+  { title: "Web & App Development", image: "/servicesPics/webDev.jpg", href: "/services/web-app-dev" },
+  // { title: "App Development", image: "/servicesPics/appDev.jpg", href: "/services/app-dev" },
   { title: "API & Backend Systems", image: "/servicesPics/api.jpg", href: "/services/api-backend-dev" },
   { title: "Video Editing", image: "/servicesPics/videoEditing.jpg", href: "/services/video-editing" },
   { title: "Logo Design", image: "/servicesPics/logo.jpg", href: "/services/logo-design" },

@@ -1,16 +1,32 @@
 "use client";
 
-import React from "react";
-import { useParams } from "next/navigation";
+import React, { JSX } from "react";
+import { notFound, useParams } from "next/navigation";
+import WebAppDev from "@/components/services/WebAppDev";
+import VideoEditing from "@/components/services/VideoEditing";
+import ApiBackendSystem from "@/components/services/ApiBackendSystem";
+import LogoDesign from "@/components/services/LogoDesign";
+
 const Page = () => {
   const params = useParams();
   const serviceName = params.serviceName as string;
 
+  const Services : Record<string, JSX.Element> = {
+    "web-app-dev": <WebAppDev />,
+    "video-editing": <VideoEditing />,
+    "api-backend-dev": <ApiBackendSystem />,
+    "logo-design": <LogoDesign />
+  }
+
+  const ServiceComponent  = Services[serviceName];
+
+  if(!ServiceComponent ){
+    notFound();
+  }
+
   return (
-    <div className="py-22">
-      <h1 className="text-3xl font-bold capitalize">
-        {serviceName}
-      </h1>
+    <div className="py-20">
+      {ServiceComponent }
     </div>
   );
 };
