@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import { ThemeToggle } from '../ThemeToggle';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Header = () => {
   const router = useRouter();
@@ -11,9 +12,10 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 h-19 flex items-center justify-between">
 
         {/* Logo Section */}
-        <div
-          onClick={() => router.push("/")}
+        <a
+          // onClick={() => router.push("/")}
           className="flex items-center gap-3 cursor-pointer"
+          href="/"
         >
           <img
             src="/images/yandu_logo.png" alt="Yandu Logo"
@@ -22,7 +24,7 @@ const Header = () => {
           <h1 className="text-2xl font-black tracking-tighter text-slate-800 dark:text-white leading-none">
             Yandu<span className="text-blue-600">.</span>
           </h1>
-        </div>
+        </a>
 
         {/* Actions */}
         <div className="flex items-center gap-4">

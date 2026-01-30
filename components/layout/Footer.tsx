@@ -9,9 +9,9 @@ const Footer = () => {
       { name: "Team", href: "/team" },
     ],
     Support: [
-      { name: "How it works", href: "/how-it-works" },
-      { name: "Trust & Safety", href: "/trust-safety" },
-      { name: "Help Centre", href: "/help" },
+      { name: "How it works", href: "/howItWorks" },
+      { name: "Trust & Safety", href: "/trustSafety" },
+      { name: "Help Centre", href: "/helpCentre" },
     ],
     Discover: [
       { name: "Guides", href: "/guides" },
@@ -79,7 +79,13 @@ const Footer = () => {
               <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
             </SocialLink>
 
-            <SocialLink href="#" label="LinkedIn">
+            {/* FIXED LINKEDIN: Added target and rel, fixed SVG spacing */}
+            <SocialLink 
+              href="https://www.linkedin.com/feed/" 
+              label="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
               <rect x="2" y="9" width="4" height="12" />
               <circle cx="4" cy="4" r="2" />
@@ -102,17 +108,22 @@ const Footer = () => {
   );
 };
 
-// Social icon wrapper types
+// 1. UPDATED INTERFACE: Added target and rel as optional props
 interface SocialLinkProps {
   href: string;
   label: string;
   children: React.ReactNode;
+  target?: string;
+  rel?: string;
 }
-// Social icon wrapper
-const SocialLink = ({ href, children, label }: SocialLinkProps) => (
+
+// 2. UPDATED COMPONENT: Now accepts and applies target/rel
+const SocialLink = ({ href, children, label, target, rel }: SocialLinkProps) => (
   <a
     href={href}
     aria-label={label}
+    target={target}
+    rel={rel}
     className="text-gray-400 hover:text-white transition-colors"
   >
     <svg

@@ -165,7 +165,7 @@ const About = () => {
         <div className="max-w-3xl mx-auto">
           <h3 className="text-4xl font-bold mb-6 text-slate-900 dark:text-white">Ready to build with Yandu?</h3>
           <p className="text-xl text-slate-600 dark:text-slate-400 mb-10">Let's turn your vision into a digital reality.</p>
-          <Link href="/contact" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 px-10 rounded-full shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1">
+          <Link href="/contact" className="inline-block bg-slate-900 dark:bg-blue-600 hover:bg-slate-800 dark:hover:bg-blue-700 text-white font-bold py-4 px-12 rounded-full shadow-xl transition-all hover:shadow-slate-200 dark:hover:shadow-blue-500/20">
             Get Started Today
           </Link>
         </div>
