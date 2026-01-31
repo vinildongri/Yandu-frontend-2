@@ -10,17 +10,14 @@ const images = [
 ];
 
 const items = [
-  { label: "Web Development", link: "/contact" },
-  { label: "App Development", link: "/contact" },
-  { label: "API & Backend Systems", link: "/contact" },
-  { label: "Video Editing", link: "/contact" },
-  { label: "Logo Design", link: "/contact" },
+  { label: "Web & App Development", link: "/services/web-app-dev" },
+  // { label: "App Development", link: "/contact" },
+  { label: "API & Backend Systems", link: "/services/api-backend-dev" },
+  { label: "Video Editing", link: "/services/video-editing" },
+  { label: "Logo Design", link: "/services/logo-design" },
   // { label: "Optimization & Security", link: "/contact" },
-  // { label: "Social Media Strategy", link: "/contact" }
+  { label: "Social Media", link: "/services/social-media" }
 ];
-// Graphic Design
-// Graphic Design
-// Database Management
 
 const Hero = () => {
 
@@ -69,7 +66,10 @@ const Hero = () => {
 
           {/* Hire & Contact Button */}
           <div>
-            <button className="px-8 py-3 m-3 bg-[#0d6efd] cursor-pointer text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300 hover:-translate-y-0.5">
+            <button 
+              onClick={()=> router.push("/team")}
+              className="px-8 py-3 m-3 bg-[#0d6efd] cursor-pointer text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300 hover:-translate-y-0.5"
+              >
               Hire a Freelancer
             </button>
             <button

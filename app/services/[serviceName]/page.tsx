@@ -6,6 +6,7 @@ import WebAppDev from "@/components/services/WebAppDev";
 import VideoEditing from "@/components/services/VideoEditing";
 import ApiBackendSystem from "@/components/services/ApiBackendSystem";
 import LogoDesign from "@/components/services/LogoDesign";
+import SocialMedia from "@/components/services/SocialMedia";
 
 const Page = () => {
   const params = useParams();
@@ -15,7 +16,8 @@ const Page = () => {
     "web-app-dev": <WebAppDev />,
     "video-editing": <VideoEditing />,
     "api-backend-dev": <ApiBackendSystem />,
-    "logo-design": <LogoDesign />
+    "logo-design": <LogoDesign />,
+    "social-media": <SocialMedia />
   }
 
   const ServiceComponent  = Services[serviceName];

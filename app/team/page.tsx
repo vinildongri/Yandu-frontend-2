@@ -1,30 +1,6 @@
 import React from 'react';
-import { Linkedin, Twitter, Mail, Globe, PenTool, Video, User, Code } from 'lucide-react';
-
-// Simulating Next.js Link for preview
-interface LinkProps {
-  children: React.ReactNode;
-  href: string;
-  className?: string;
-}
-
-const Link = ({ children, href, className }: LinkProps) => (
-  <a href={href} className={className}>
-    {children}
-  </a>
-);
-
-// For the Image component
-interface ImageProps {
-  src: string;
-  alt: string;
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-const Image = ({ src, alt, className, style }: ImageProps) => (
-  <img src={src} alt={alt} className={className} style={style} />
-);
+import { Linkedin, Twitter, Mail, Globe, PenTool, Video, User, Code, Github } from 'lucide-react';
+import Link from "next/link"
 
 const Team = () => {
   return (
@@ -47,7 +23,7 @@ const Team = () => {
             
             {/* Founder Image */}
             <div className="w-full md:w-2/5 h-96 md:h-auto relative bg-slate-200 dark:bg-zinc-800">
-              <Image 
+              <img
                 src="/team/vinil2.jpg" 
                 alt="Founder of Yandu"
                 className="object-cover w-full h-full "
@@ -74,17 +50,30 @@ const Team = () => {
 
               {/* Social Links */}
               <div className="flex gap-4">
-                <a href="https://www.linkedin.com/feed/" 
+                <Link 
+                  href="https://www.linkedin.com/feed/" 
                   target='_blank'
                   className="p-3 bg-slate-100 dark:bg-zinc-800 rounded-xl hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1">
                   <Linkedin size={22} />
-                </a>
-                <a href="#" className="p-3 bg-slate-100 dark:bg-zinc-800 rounded-xl hover:bg-slate-900 dark:hover:bg-black hover:text-white transition-all transform hover:-translate-y-1">
-                  <Code size={22} />
-                </a>
-                <a href="mailto:dongrivinil@gmail.com" className="p-3 bg-slate-100 dark:bg-zinc-800 rounded-xl hover:bg-red-500 hover:text-white transition-all transform hover:-translate-y-1">
+                </Link>
+                <Link
+                  href="https://github.com/vinildongri" 
+                  target='_blanck'
+                  className="p-3 bg-slate-100 dark:bg-zinc-800 rounded-xl hover:bg-slate-900 dark:hover:bg-black hover:text-white transition-all transform hover:-translate-y-1">
+                  <Github />
+                </Link>
+                <Link 
+                  href="mailto:dongrivinil@gmail.com"
+                  className="p-3 bg-slate-100 dark:bg-zinc-800 rounded-xl hover:bg-red-500 hover:text-white transition-all transform hover:-translate-y-1">
                   <Mail size={22} />
-                </a>
+                </Link>
+                <Link
+                  href="https://portfolio-frontend-nine-indol.vercel.app/"
+                  target='_blanck'
+                  className="p-3 bg-slate-100 dark:bg-zinc-800 rounded-xl hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1"
+                >
+                  <User size={22} />
+                </Link>
               </div>
             </div>
           </div>
@@ -107,7 +96,7 @@ const Team = () => {
             {/* Design Specialist */}
             <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800 overflow-hidden hover:shadow-xl dark:hover:shadow-blue-500/10 transition-all group">
               <div className="h-56 bg-purple-100 dark:bg-purple-900/20 relative overflow-hidden">
-                 <Image 
+                 <img
                   src="/team/pavan.jpg"
                   alt="Creative Lead"
                   className="object-cover w-full h-70 group-hover:scale-110 transition-transform duration-500"
@@ -130,7 +119,7 @@ const Team = () => {
             {/* Video Specialist */}
             <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800 overflow-hidden hover:shadow-xl dark:hover:shadow-pink-500/10 transition-all group">
               <div className="h-56 bg-pink-100 dark:bg-pink-900/20 relative overflow-hidden">
-                 <Image 
+                 <img
                   src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                   alt="Media Specialist"
                   className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
@@ -148,7 +137,7 @@ const Team = () => {
              {/* Strategy Specialist */}
              <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800 overflow-hidden hover:shadow-xl dark:hover:shadow-orange-500/10 transition-all group">
               <div className="h-56 bg-orange-100 dark:bg-orange-900/20 relative overflow-hidden">
-                 <Image 
+                 <img
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                   alt="Growth Strategist"
                   className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"

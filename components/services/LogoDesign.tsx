@@ -85,9 +85,10 @@ const LogoDesign = () => {
                 {/* Card 1: Text */}
                 <div className="bg-white dark:bg-[#111318] border border-transparent dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-xl transition-all duration-300 rounded-[2rem] p-8 flex flex-col justify-center h-[360px] relative overflow-hidden group">
                     <span className="text-[10px] uppercase font-bold text-slate-400 mb-4 tracking-widest">Philosophy</span>
-                    <h2 className="text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
+                    <h2 className="text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-1">
                         Full Brand Design that Breathes.
                     </h2>
+                    <p className="text-sm text-slate-600">We believe a brand should never feel cluttered. Our philosophy centers on intentional white space and bold typography, ensuring your identity has the room to speak clearly to your audience</p>
                     <div className="w-16 h-2 bg-[#e94e66] rounded-full mt-auto"></div>
                 </div>
 
@@ -207,9 +208,11 @@ const LogoDesign = () => {
                         <p className="text-slate-400 max-w-md mb-8 leading-relaxed">
                             Test known color st wood forest constster and many other iconic brand visual assets created by Yandu.
                         </p>
-                        <div className="flex items-center justify-center md:justify-start gap-4">
-                            <button className="flex items-center gap-2 text-white font-bold hover:text-[#e94e66] transition-colors">
-                                View Case Study <ArrowRight size={18} />
+                        <div 
+                        onClick={()=>router.push("/contact")}
+                        className="flex items-center justify-center md:justify-start gap-4">
+                            <button className="flex items-center cursor-pointer gap-2 text-white font-bold hover:text-[#e94e66] transition-colors">
+                                Contact Us <ArrowRight size={18} />
                             </button>
                         </div>
                     </div>
