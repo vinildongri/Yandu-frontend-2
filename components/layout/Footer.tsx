@@ -10,16 +10,16 @@ const Footer = () => {
     ],
     Support: [
       { name: "How it works", href: "/howItWorks" },
-      { name: "Trust & Safety", href: "/trustSafety" },
-      { name: "Help Centre", href: "/helpCentre" },
+      { name: "Trust & Safety", href: "/trust-safety" },
+      { name: "Help Centre", href: "/help-centre" },
     ],
     Discover: [
       { name: "Guides", href: "/guides" },
-      { name: "Stories", href: "/stories" },
-      { name: "News", href: "/news" },
+      { name: "Billing & Payments", href: "/billing-payments" },
+      { name: "Project Management", href: "/project-management" },
     ],
     Resources: [
-      { name: "Business Cost Calculator", href: "/tools/business-cost" },
+      { name: "Business Cost Calculator", href: "/business-cost" },
       { name: "Startup Cities", href: "/startup-cities" },
     ],
     Browse: [

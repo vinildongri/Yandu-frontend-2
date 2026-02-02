@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CheckCircle, ArrowRight, Smartphone, Globe, Code, Rocket, Zap, Layout } from "lucide-react";
+import { CheckCircle, ArrowRight, Database, Server, Shield, HardDrive, Zap, Network, Activity } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -20,29 +20,8 @@ const SectionHeader = ({ title, subtitle }: SectionHeaderProps) => (
     </div>
 );
 
-const WebAppDev = () => {
+const DatabaseManagement = () => {
     const router = useRouter();
-
-    const projects = [
-        {
-            title: "Tic-Tac-Toe",
-            desc: "A high-performance strategy game featuring real-time state management and fluid CSS animations.",
-            tag: "Game X/O", src: "/products/tic-tac-toe-cover.jpg",
-            href: "https://tic-tac-toe-three-ashen-57.vercel.app/"
-        },
-        {
-            title: "NoteGen",
-            desc: "AI-powered chatbot & PDF summarizer",
-            tag: "GenAI / MERN", src: "/products/noteGen.jpg",
-            href: "https://note-gen-frontend.vercel.app/"
-        },
-        {
-            title: "Yandu Business",
-            desc: "The official digital headquarters for Yandu, featuring high-performance service funnels.",
-            tag: "Full-Stack Agency", src: "/products/business.jpg",
-            href: "/"
-        },
-    ];
 
     return (
         // Main Wrapper with Dark/Light Mode Transition
@@ -57,26 +36,26 @@ const WebAppDev = () => {
                     {/* Content */}
                     <div className="max-w-2xl text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Yandu Solutions</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Yandu Data</span>
                             <div className="h-px w-12 bg-slate-700"></div>
                         </div>
 
                         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                            Web & App Dev
+                            Database Solutions
                         </h1>
                         <p className="text-lg text-slate-400 leading-relaxed mb-10 max-w-lg mx-auto md:mx-0">
-                            Turning your ideas into high-performance digital reality with cutting-edge MERN and Native technologies.
+                            We design, optimize, and manage high-performance databases that keep your applications fast and secure.
                         </p>
 
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
                             <div className="px-8 py-3 bg-white text-black text-xs font-bold rounded-full uppercase tracking-wider">
-                                100% RESPONSIVE
+                                ZERO DATA LOSS
                             </div>
                             <button
                                 onClick={() => router.push("/contact")}
                                 className="px-8 py-3 bg-[#3b82f6] cursor-pointer text-white text-xs font-bold rounded-full uppercase tracking-wider hover:bg-[#2563eb] transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
                             >
-                                START BUILDING
+                                OPTIMIZE NOW
                             </button>
                         </div>
                     </div>
@@ -85,18 +64,18 @@ const WebAppDev = () => {
                     <div className="hidden md:flex relative z-10">
                         <div className="w-64 h-64 border border-slate-700 rounded-full flex items-center justify-center animate-[spin_20s_linear_infinite]">
                             <div className="w-40 h-40 border border-slate-600 rounded-full flex items-center justify-center">
-                                <Code size={48} className="text-[#3b82f6]" />
+                                <Database size={48} className="text-[#3b82f6]" />
                             </div>
                         </div>
                         {/* Floating Icons */}
                         <div className="absolute top-0 right-10 bg-[#3b82f6] p-3 rounded-full animate-bounce">
-                            <Rocket size={20} className="text-white fill-white" />
+                            <HardDrive size={20} className="text-white fill-white" />
                         </div>
                     </div>
 
                 </div>
 
-                {/* Background Glows */}
+                {/* Background Glow */}
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#3b82f6] rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
             </div>
 
@@ -104,73 +83,76 @@ const WebAppDev = () => {
             {/* ================= REST OF THE SECTIONS (Centered Container) ================= */}
             <div className="max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
 
-                {/* ================= HEADER: WORKFLOW ================= */}
-                <SectionHeader subtitle="Our Process" title="Development Workflow" />
+                {/* ================= HEADER: EXPERTISE ================= */}
+                <SectionHeader subtitle="Core Competencies" title="Data Architecture" />
 
-                {/* ================= SECTION 2: PROCESS CARDS ================= */}
+                {/* ================= SECTION 2: FEATURE CARDS ================= */}
 
-                {/* Card 1: Discovery */}
+                {/* Card 1: Performance Tuning */}
                 <div className="bg-white dark:bg-[#111318] border border-transparent dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-xl transition-all duration-300 rounded-[2rem] p-8 flex flex-col justify-center h-[360px] relative overflow-hidden group">
-                    <span className="text-[10px] uppercase font-bold text-slate-400 mb-4 tracking-widest">Phase 01</span>
+                    <span className="text-[10px] uppercase font-bold text-slate-400 mb-4 tracking-widest">Performance</span>
                     <h2 className="text-4xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
-                        Discovery & Architecture
+                        Query <br /> Optimization.
                     </h2>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Defining project scope and selecting the optimal stack (MERN / Next.js / Kotlin).</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">We analyze slow queries, add strategic indexing, and reduce latency by up to 90%.</p>
                     <div className="w-16 h-2 bg-[#3b82f6] rounded-full mt-auto"></div>
                 </div>
 
-                {/* Card 2: Development Visual */}
+                {/* Card 2: Tech Stack Visual */}
                 <div className="bg-white dark:bg-[#111318] border border-transparent dark:border-slate-800 shadow-sm dark:shadow-none hover:shadow-xl transition-all duration-300 rounded-[2rem] p-8 flex flex-col items-center justify-between h-[360px] relative overflow-hidden">
                     <div className="w-full flex justify-between items-start z-10">
-                        <span className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Phase 02</span>
-                        <Zap size={16} className="text-[#3b82f6]" />
+                        <span className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Technologies</span>
+                        <Server size={16} className="text-[#3b82f6]" />
                     </div>
 
                     <div className="text-center z-10 mt-2">
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">Agile Sprints</h3>
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">SQL & NoSQL</h3>
                     </div>
 
-                    {/* CSS Code Illustration */}
+                    {/* CSS Stack Illustration */}
                     <div className="relative flex flex-col items-center justify-center w-full px-4 scale-110">
-                        <div className="w-32 h-24 bg-[#111318] dark:bg-[#1c1f26] rounded-xl border-4 border-slate-200 dark:border-slate-600 flex items-center justify-center shadow-lg relative z-10 transition-colors">
-                            <div className="text-[#3b82f6] font-mono text-xs">
-                                {"< />"}
-                            </div>
+                        <div className="flex flex-col gap-1">
+                            {/* Stack Layers */}
+                            <div className="w-24 h-6 bg-[#111318] dark:bg-[#1c1f26] rounded-lg border border-slate-300 dark:border-slate-600 flex items-center justify-center text-[10px] text-slate-400 font-bold shadow-sm">MongoDB</div>
+                            <div className="w-24 h-6 bg-[#111318] dark:bg-[#1c1f26] rounded-lg border border-slate-300 dark:border-slate-600 flex items-center justify-center text-[10px] text-slate-400 font-bold shadow-sm">PostgreSQL</div>
+                            <div className="w-24 h-6 bg-[#3b82f6] rounded-lg border border-blue-400 flex items-center justify-center text-[10px] text-white font-bold shadow-sm">Redis</div>
                         </div>
                         <div className="w-full h-1 bg-slate-200 dark:bg-slate-700 rounded-full mt-4 transition-colors"></div>
                     </div>
                 </div>
 
-                {/* Card 3: Deployment */}
+                {/* Card 3: Security */}
                 <div className="bg-[#f4f4f5] dark:bg-[#23262f] border border-transparent dark:border-slate-700 transition-all duration-300 rounded-[2rem] p-8 flex flex-col items-center justify-center h-[360px] shadow-sm relative group overflow-hidden">
-                    <div className="absolute top-8 left-8 text-xs font-bold text-slate-400 uppercase tracking-widest">Phase 03</div>
-                    <div className="text-center z-10">
-                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Global Launch</h3>
-                        <p className="text-xs text-slate-500">Vercel • AWS • Play Store</p>
+                    <div className="absolute top-8 left-8 text-xs font-bold text-slate-400 uppercase tracking-widest">Compliance</div>
+
+                    <div className="text-center z-10 mb-6">
+                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Data Encryption</h3>
+                        <p className="text-xs text-slate-500 mt-1">AES-256 • Backups • GDPR</p>
                     </div>
-                    {/* Cloud Icon */}
-                    <div className="mt-6 w-20 h-20 bg-white dark:bg-[#111318] rounded-full flex items-center justify-center shadow-lg text-[#3b82f6]">
-                        <Globe size={32} />
+
+                    {/* Shield Icon */}
+                    <div className="w-24 h-24 bg-white dark:bg-[#111318] rounded-full flex items-center justify-center shadow-lg text-[#3b82f6] group-hover:scale-110 transition-transform duration-500">
+                        <Shield size={40} />
                     </div>
                 </div>
 
 
                 {/* ================= HEADER: PRICING ================= */}
-                <SectionHeader subtitle="Investment" title="Development Tiers" />
+                <SectionHeader subtitle="Services" title="Management Plans" />
 
                 {/* ================= SECTION 3: PRICING ================= */}
 
-                {/* Pricing 1: Starter */}
+                {/* Pricing 1: Maintenance */}
                 <div className="bg-white dark:bg-[#111318] border border-transparent dark:border-slate-800 shadow-sm dark:shadow-none hover:border-[#3b82f6] transition-all duration-300 rounded-[2rem] p-8 flex flex-col h-[380px]">
-                    <span className="text-[10px] uppercase font-bold text-slate-400 mb-2 tracking-widest">Starter</span>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 transition-colors">Landing Page</h3>
+                    <span className="text-[10px] uppercase font-bold text-slate-400 mb-2 tracking-widest">Maintenance</span>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 transition-colors">Health Check</h3>
                     <div className="flex items-baseline gap-2 mb-8">
                         <span className="text-5xl font-bold text-slate-900 dark:text-white transition-colors">$199</span>
-                        <span className="text-sm text-slate-600 dark:text-slate-500 line-through transition-colors">$299+</span>
+                        <span className="text-sm text-slate-600 dark:text-slate-500 line-through transition-colors">/mo</span>
                     </div>
 
                     <ul className="space-y-4 mt-auto">
-                        {["Single Page React/Next.js", "Fully Responsive UI", "SEO Optimization"].map((item, i) => (
+                        {["Daily Automated Backups", "Uptime Monitoring", "Monthly Performance Report", "Security Patching"].map((item, i) => (
                             <li key={i} className="flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-400 transition-colors">
                                 <CheckCircle size={16} className="text-[#3b82f6]" /> {item}
                             </li>
@@ -178,17 +160,17 @@ const WebAppDev = () => {
                     </ul>
                 </div>
 
-                {/* Pricing 2: Full-Stack (Mid) */}
+                {/* Pricing 2: Architecture (Mid) */}
                 <div className="bg-white dark:bg-[#111318] border border-transparent dark:border-slate-700 shadow-xl dark:shadow-none hover:border-[#3b82f6] transition-all duration-300 rounded-[2rem] p-8 flex flex-col h-[380px] relative overflow-hidden">
-                    <div className="absolute top-0 right-0 bg-[#3b82f6] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase">Popular</div>
-                    <span className="text-[10px] uppercase font-bold text-slate-400 mb-2 tracking-widest">Dynamic</span>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 transition-colors">Full-Stack App</h3>
+                    <div className="absolute top-0 right-0 bg-[#3b82f6] text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase">Project</div>
+                    <span className="text-[10px] uppercase font-bold text-slate-400 mb-2 tracking-widest">One-Time</span>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 transition-colors">Schema Design</h3>
                     <div className="flex items-baseline gap-2 mb-8">
-                        <span className="text-5xl font-bold text-slate-900 dark:text-white transition-colors">$599</span>
+                        <span className="text-5xl font-bold text-slate-900 dark:text-white transition-colors">$499</span>
                     </div>
 
                     <ul className="space-y-4 mt-auto">
-                        {["MERN Stack Solution", "Admin Dashboard", "Database Integration", "User Authentication"].map((item, i) => (
+                        {["Custom ERD Diagram", "Normalization & Indexing", "Migration Strategy", "API Integration Guide"].map((item, i) => (
                             <li key={i} className="flex items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-300 transition-colors">
                                 <CheckCircle size={16} className="text-[#3b82f6]" /> {item}
                             </li>
@@ -196,17 +178,17 @@ const WebAppDev = () => {
                     </ul>
                 </div>
 
-                {/* Pricing 3: Custom / AI */}
+                {/* Pricing 3: Enterprise */}
                 <div className="bg-[#111318] dark:bg-[#1c1f26] border border-slate-800 dark:border-slate-700 rounded-[2rem] p-8 flex flex-col h-[380px] shadow-2xl text-white relative overflow-hidden hover:border-[#3b82f6] transition-all">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#3b82f6] to-cyan-400"></div>
                     <span className="text-[10px] uppercase font-bold text-[#3b82f6] mb-2 tracking-widest">Enterprise</span>
-                    <h3 className="text-2xl font-bold text-white mb-4">Custom / AI</h3>
+                    <h3 className="text-2xl font-bold text-white mb-4">Clustering</h3>
                     <div className="flex items-baseline gap-2 mb-8">
                         <span className="text-5xl font-bold text-white">Custom</span>
                     </div>
 
                     <ul className="space-y-4 mt-auto">
-                        {["AI/LLM Integration", "Complex Architecture", "Cloud Infrastructure", "24/7 Priority Support"].map((item, i) => (
+                        {["Master-Slave Replication", "Sharding Implementation", "Disaster Recovery Drill", "24/7 DBA Support"].map((item, i) => (
                             <li key={i} className="flex items-center gap-3 text-sm font-medium text-slate-300">
                                 <CheckCircle size={16} className="text-[#3b82f6]" /> {item}
                             </li>
@@ -221,35 +203,47 @@ const WebAppDev = () => {
                 </div>
 
 
-                {/* ================= HEADER: PRODUCTS ================= */}
-                <SectionHeader subtitle="Portfolio" title="Developed Products" />
+                {/* ================= HEADER: CASE STUDY ================= */}
+                <SectionHeader subtitle="Case Studies" title="Data Migration" />
 
-                {/* ================= SECTION 4: PRODUCT SHOWCASE ================= */}
-                <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {projects.map((project, index) => (
-                        <div key={index} className="bg-white dark:bg-[#111318] border border-slate-100 dark:border-slate-800 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all group">
-                            <div className="h-48 bg-slate-100 dark:bg-[#1c1f26] flex items-center justify-center relative overflow-hidden">
-                                <div className="text-slate-400 group-hover:scale-105 transition-transform duration-500 w-full h-full">
-                                    {/* Replace with actual Image component */}
-                                    <img src={project.src} alt={project.title} className="w-full h-full object-cover opacity-90 group-hover:opacity-100" />
-                                </div>
+                {/* ================= SECTION 4: CASE STUDY ================= */}
+                <div className="md:col-span-3 bg-[#111318] border border-slate-800 rounded-[2.5rem] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl relative overflow-hidden group">
+
+                    <div className="z-10 text-center md:text-left">
+                        <div className="inline-flex items-center gap-2 mb-4">
+                            <span className="w-2 h-2 rounded-full bg-[#3b82f6]"></span>
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Success Story</span>
+                        </div>
+                        <h2 className="text-4xl font-bold text-white mb-6">Seamless Transition</h2>
+                        <p className="text-slate-400 max-w-md mb-8 leading-relaxed">
+                            Migrated a legacy SQL database to a distributed MongoDB cluster with zero downtime for a fintech client.
+                        </p>
+                        <a
+                            href="mailto:vinilwork88@gmail.com"
+                            className="flex items-center gap-2 text-white font-bold hover:text-[#ec4899] transition-colors"
+                        >
+                            Contact Us <ArrowRight size={18} />
+                        </a>
+                    </div>
+
+                    <div className="relative z-10 w-full max-w-md h-48 bg-[#1c1f26] dark:bg-[#2a2d36] border border-slate-700 rounded-2xl flex items-center justify-center group-hover:scale-[1.02] transition-transform duration-500 shadow-xl">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-[#3b82f6] rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/50">
+                                <Activity size={24} className="text-white" />
                             </div>
-                            <div className="p-8">
-                                <span className="inline-block px-3 py-1 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-[#3b82f6] text-[10px] font-bold uppercase tracking-widest mb-4">
-                                    {project.tag}
-                                </span>
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{project.title}</h3>
-                                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 line-clamp-2">{project.desc}</p>
-                                <Link
-                                    href={project.href}
-                                    target="_blank"
-                                    className="inline-flex items-center gap-2 text-sm font-bold text-[#3b82f6] hover:underline"
-                                >
-                                    View Project <ArrowRight size={16} />
-                                </Link>
+                            <div>
+                                <h3 className="text-2xl font-bold text-white">50TB+</h3>
+                                <span className="text-xs text-slate-500">Data Processed</span>
                             </div>
                         </div>
-                    ))}
+
+                        <div className="absolute -bottom-4 -right-4 bg-white dark:bg-[#111318] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 text-[10px] font-bold px-4 py-2 rounded-lg shadow-lg transition-colors flex gap-2 items-center">
+                            <Network size={12} className="text-green-500" /> Success
+                        </div>
+                    </div>
+
+                    {/* Background Decor */}
+                    <div className="absolute right-0 bottom-0 w-[400px] h-[400px] bg-blue-900/20 rounded-full blur-[100px] pointer-events-none"></div>
                 </div>
 
 
@@ -260,16 +254,23 @@ const WebAppDev = () => {
                         <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#3b82f6] rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
 
                         <div className="relative z-10 max-w-3xl mx-auto">
-                            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Interested in working with Yandu?</h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">Data Integrity Matters.</h2>
                             <p className="text-lg text-slate-400 mb-10 leading-relaxed">
-                                Whether it's a simple landing page or a complex AI-driven application, let’s discuss how we can build your next big idea.
+                                Don't let slow queries kill your user experience. Let's optimize your database architecture today.
                             </p>
-                            <button
-                                onClick={() => router.push("/contact")}
-                                className="px-10 py-4 bg-[#3b82f6] cursor-pointer text-white text-sm font-bold rounded-full uppercase tracking-wider hover:bg-[#2563eb] transition-all transform hover:scale-105 shadow-lg"
+                            <Link
+                                href="mailto:vinilwork88@gmail.com"
+                                className="bg-blue-500 hover:bg-blue-600 px-10 py-4 rounded-full font-bold"
                             >
-                                Contact for Quotation
-                            </button>
+                                Contact Support
+                            </Link>
+                            <span className="ms-5"></span>
+                            <Link
+                                href="/contact"
+                                className="bg-emerald-600 hover:bg-emerald-800 px-10 py-4 rounded-full font-bold"
+                            >
+                                Start a Project
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -279,4 +280,4 @@ const WebAppDev = () => {
     );
 };
 
-export default WebAppDev;
+export default DatabaseManagement;

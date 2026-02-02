@@ -6,18 +6,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const categories = [
   { title: "Web Development", image: "/servicesPics/webDev.jpg", href: "/services/web-app-dev" },
-  { title: "App Development", image: "/servicesPics/appDev.jpg", href:"/services/api-backend-dev" },
+  { title: "App Development", image: "/servicesPics/appDev.jpg", href: "/services/api-backend-dev" },
   { title: "API & Backend Systems", image: "/servicesPics/api.jpg", href: "/services/api-backend-dev" },
   { title: "Video Editing", image: "/servicesPics/videoEditing.jpg", href: "/services/video-editing" },
   { title: "Logo Design", image: "/servicesPics/logo.jpg", href: "/services/logo-design" },
-  { title: "Optimization & Security", image: "/servicesPics/security.jpg",  href: "/services/security"  },
+  { title: "Optimization & Security", image: "/servicesPics/security.jpg", href: "/services/optimization-security" },
   { title: "Social Media Strategy", image: "/servicesPics/socialMedia.jpg", href: "/services/social-media" },
   { title: "Graphic Design", image: "/servicesPics/graphic.jpg", href: "/services/graphic-design" },
   { title: "Database Management", image: "/servicesPics/dataBase.jpg", href: "/services/database" },
+  { title: "UI/UX Design", image: "/servicesPics/uiUxDesign.jpg", href: "/services/ui-ux-design" }
 ];
 
 export const ServicesPreview = () => {
-const scrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const scrollLeft = () => {
     scrollRef.current?.scrollBy({ left: -320, behavior: "smooth" });
@@ -64,7 +65,7 @@ const scrollRef = useRef<HTMLDivElement | null>(null);
       {/* Cards – Horizontal Scroll */}
       <div
         ref={scrollRef}
-        
+
         className="flex gap-6 overflow-x-auto  pb-4 scroll-smooth"
       >
         {categories.map((cat, index) => (

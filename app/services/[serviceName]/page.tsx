@@ -7,7 +7,10 @@ import VideoEditing from "@/components/services/VideoEditing";
 import ApiBackendSystem from "@/components/services/ApiBackendSystem";
 import LogoDesign from "@/components/services/LogoDesign";
 import SocialMedia from "@/components/services/SocialMedia";
-
+import DatabaseManagement from "@/components/services/DatabaseManagement";
+import UiUxDesign from "@/components/services/UiUxDesign"
+import GraphicDesign from "@/components/services/GraphicDesign";
+import OptimizationSecurity from "@/components/services/OptimizationSecurity";
 const Page = () => {
   const params = useParams();
   const serviceName = params.serviceName as string;
@@ -17,7 +20,11 @@ const Page = () => {
     "video-editing": <VideoEditing />,
     "api-backend-dev": <ApiBackendSystem />,
     "logo-design": <LogoDesign />,
-    "social-media": <SocialMedia />
+    "social-media": <SocialMedia />,
+    "database": <DatabaseManagement />,
+    "ui-ux-design": <UiUxDesign />,
+    "graphic-design": <GraphicDesign />,
+    "optimization-security": <OptimizationSecurity />
   }
 
   const ServiceComponent  = Services[serviceName];

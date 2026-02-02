@@ -1,12 +1,16 @@
-import React from 'react';
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import Link from "next/link";
 import { 
   Search, 
   FileText, 
   Code, 
   Rocket, 
-  ArrowRight 
-} from 'lucide-react';
+  ArrowRight,
+  Zap,
+  CheckCircle
+} from "lucide-react";
 
 const HowItWorks = () => {
   const steps = [
@@ -40,8 +44,8 @@ const HowItWorks = () => {
     },
   ];
 
-  // Helper to get color classes based on the step color (matching your About page distinct colors)
-  const getColorClasses = (color: String) => {
+  // Helper to get color classes based on the step color
+  const getColorClasses = (color: string) => {
     switch(color) {
       case 'purple': return 'bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 group-hover:bg-purple-600 group-hover:text-white';
       case 'emerald': return 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400 group-hover:bg-emerald-600 group-hover:text-white';
@@ -50,7 +54,7 @@ const HowItWorks = () => {
     }
   };
 
-  const getBorderClasses = (color: String) => {
+  const getBorderClasses = (color: string) => {
      switch(color) {
       case 'purple': return 'hover:border-purple-200 dark:hover:border-purple-500/50';
       case 'emerald': return 'hover:border-emerald-200 dark:hover:border-emerald-500/50';
@@ -60,41 +64,48 @@ const HowItWorks = () => {
   };
 
   return (
-    <div className="font-sans text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#1c1f26] font-sans transition-colors duration-500 pb-20">
       
-      {/* 1. Hero Section (Matching About Page) */}
-      <section className="bg-slate-900 dark:bg-black text-white text-center py-24 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            How We <span className="text-blue-500">Work</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-300 font-light max-w-2xl mx-auto">
-            From concept to code, our process is transparent, collaborative, and designed to deliver results.
-          </p>
-        </div>
-      </section>
+      {/* 1. Hero Section */}
+      <div className="w-full bg-[#111318] text-white relative overflow-hidden border-b border-slate-800">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-20 md:py-24 relative z-10 text-center">
+            <div className="inline-flex items-center justify-center gap-2 mb-6">
+                <span className="w-2 h-2 rounded-full bg-[#3b82f6]"></span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Our Process</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              How We <span className="text-[#3b82f6]">Work</span>
+            </h1>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              From concept to code, our process is transparent, collaborative, and designed to deliver results.
+            </p>
+          </div>
+          {/* Background Glow */}
+          <div className="absolute top-[-50%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#3b82f6] rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+      </div>
 
       {/* 2. Timeline Section */}
-      <section className="py-20 px-4 bg-white dark:bg-zinc-950 transition-colors">
+      <section className="py-20 px-4">
         <div className="max-w-5xl mx-auto relative">
           
           {/* Vertical Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-zinc-800 transform md:-translate-x-1/2"></div>
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 transform md:-translate-x-1/2"></div>
 
-          <div className="space-y-12 sm:space-y-20">
+          <div className="space-y-12 sm:space-y-24">
             {steps.map((step, index) => (
               <div key={step.id} className={`relative flex items-start md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                 
-                {/* Center Dot (Hidden on mobile to use the card icon instead, or kept for structure) */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-white dark:bg-zinc-950 border-4 border-slate-300 dark:border-zinc-700 rounded-full z-10 transform -translate-x-1/2 md:-translate-x-1/2 mt-8 md:mt-0"></div>
+                {/* Center Dot */}
+                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-white dark:bg-[#1c1f26] border-4 border-slate-300 dark:border-slate-700 rounded-full z-10 transform -translate-x-1/2 md:-translate-x-1/2 mt-8 md:mt-0 shadow-lg"></div>
 
                 {/* Content Card */}
                 <div className={`ml-20 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-16' : 'md:pl-16'}`}>
                   
-                  <div className={`group bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800 transition-all duration-300 ${getBorderClasses(step.color)}`}>
+                  <div className={`group bg-white dark:bg-[#111318] p-8 rounded-[2rem] shadow-sm border border-slate-200 dark:border-slate-800 transition-all duration-300 ${getBorderClasses(step.color)} hover:shadow-xl hover:shadow-blue-900/5`}>
                     
                     {/* Icon Box */}
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${getColorClasses(step.color)}`}>
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 ${getColorClasses(step.color)}`}>
                       {step.icon}
                     </div>
 
@@ -102,7 +113,7 @@ const HowItWorks = () => {
                       {step.title}
                     </h3>
                     
-                    <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -114,19 +125,24 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* 3. CTA Section (Matching About Page) */}
-      <section className="py-24 px-4 text-center bg-slate-50 dark:bg-zinc-900/50 transition-colors border-t border-slate-100 dark:border-zinc-800/50">
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-4xl font-bold mb-6 text-slate-900 dark:text-white">Ready to start your project?</h3>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-10">
-            Let's turn your ideas into reality with the Yandu workflow.
-          </p>
-          <Link 
-            href="/contact" 
-            className="inline-flex items-center gap-2 bg-slate-900 dark:bg-blue-600 hover:bg-slate-800 dark:hover:bg-blue-700 text-white font-bold py-4 px-12 rounded-full shadow-xl transition-all hover:shadow-slate-200 dark:hover:shadow-blue-500/20"
-          >
-            Start a Project <ArrowRight size={20} />
-          </Link>
+      {/* 3. CTA Section */}
+      <section className="px-4 text-center mt-10">
+        <div className="max-w-4xl mx-auto bg-[#111318] rounded-[3rem] p-12 text-white shadow-2xl relative overflow-hidden border border-slate-800">
+            {/* Background Decor */}
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#3b82f6] rounded-full blur-[100px] opacity-10 pointer-events-none"></div>
+
+            <div className="relative z-10">
+                <h3 className="text-4xl font-bold mb-6">Ready to start your project?</h3>
+                <p className="text-xl text-slate-400 mb-10 max-w-xl mx-auto">
+                  Let's turn your ideas into reality with the Yandu workflow.
+                </p>
+                <Link 
+                  href="/contact" 
+                  className="inline-flex items-center gap-2 bg-[#3b82f6] hover:bg-[#2563eb] text-white font-bold py-4 px-12 rounded-full shadow-xl transition-all hover:scale-105 hover:shadow-blue-500/20"
+                >
+                  Start a Project <ArrowRight size={20} />
+                </Link>
+            </div>
         </div>
       </section>
 

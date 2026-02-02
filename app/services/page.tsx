@@ -13,6 +13,7 @@ const categories = [
   { title: "Social Media Strategy", image: "/servicesPics/socialMedia.jpg", href: "/services/social-media" },
   { title: "Graphic Design", image: "/servicesPics/graphic.jpg", href: "/services/graphic-design" },
   { title: "Database Management", image: "/servicesPics/dataBase.jpg", href: "/services/database" },
+  {title: "UI/UX Design", image:"/servicesPics/uiUxDesign.jpg", href: "/services/ui-ux-design"}
 ];
 
 export default function ServicesPage() {

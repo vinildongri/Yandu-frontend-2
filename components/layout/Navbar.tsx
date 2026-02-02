@@ -11,7 +11,8 @@ import {
   Palette, 
   ShieldCheck, 
   Share2, 
-  Database 
+  Database, 
+  UnplugIcon
 } from 'lucide-react';
 
 const Navbar = () => {
@@ -27,9 +28,10 @@ const Navbar = () => {
         { name: 'Video Editing', href: '/services/video-editing', icon: <Video className="w-4 h-4" />, desc: 'Professional post-production' },
         { name: 'Logo Design', href: '/services/logo-design', icon: <Palette className="w-4 h-4" />, desc: 'Brand identity & logos' },
         { name: 'Graphic Design', href: '/services/graphic-design', icon: <Layout className="w-4 h-4" />, desc: 'Visual storytelling' },
-        { name: 'Optimization & Security', href: '/services/security', icon: <ShieldCheck className="w-4 h-4" />, desc: 'Performance & protection' },
+        { name: 'Optimization & Security', href: '/services/optimization-security', icon: <ShieldCheck className="w-4 h-4" />, desc: 'Performance & protection' },
         { name: 'Social Media Strategy', href: '/services/social-media', icon: <Share2 className="w-4 h-4" />, desc: 'Growth & engagement' },
         { name: 'Database Management', href: '/services/database', icon: <Database className="w-4 h-4" />, desc: 'Data structure & storage' },
+        {name: 'UI/Ux Design', href: '/services/ui-ux-design',icon: <UnplugIcon className="w-4 h-4" />,desc:  'Clean and intuitive user interfaces'}
       ]
     },
     {name: "Our Team", href: "/team"},
