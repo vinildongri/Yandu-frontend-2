@@ -11,18 +11,15 @@ const images = [
 
 const items = [
   { label: "Web & App Development", link: "/services/web-app-dev" },
-  // { label: "App Development", link: "/contact" },
   { label: "API & Backend Systems", link: "/services/api-backend-dev" },
   { label: "Video Editing", link: "/services/video-editing" },
   { label: "Logo Design", link: "/services/logo-design" },
-  // { label: "Optimization & Security", link: "/contact" },
   { label: "Social Media", link: "/services/social-media" }
 ];
 
 const Hero = () => {
 
   const router = useRouter();
-
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -34,11 +31,13 @@ const Hero = () => {
   }, []);
 
   return (
-    // CHANGE 1: Added 'flex-col' and 'items-center' to stack children vertically and center them
     <section className="w-full flex flex-col items-center pt-10 px-4 mt-10">
 
-      {/* HERO IMAGE BOX */}
-      <div className="relative w-full max-w-7xl h-[360px] md:h-[420px] lg:h-[480px] rounded-2xl overflow-hidden shadow-xl">
+      {/* FIX 1: Changed height Logic 
+         - Mobile: 'h-auto min-h-[500px]' (Grows with text, minimum 500px tall)
+         - Desktop: 'md:h-[500px] lg:h-[600px]' (Fixed height looks cleaner on big screens)
+      */}
+      <div className="relative w-full max-w-7xl h-auto min-h-[500px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-xl transition-all duration-300">
 
         {/* Background Slides */}
         {images.map((img, index) => (
@@ -51,42 +50,47 @@ const Hero = () => {
         ))}
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-blue-900/50"></div>
+        <div className="absolute inset-0 bg-blue-900/60"></div>
 
         {/* Content */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-white">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold max-w-3xl">
+        {/* FIX 2: Added 'py-12' (padding vertical) so text doesn't hit edges on mobile */}
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 py-12 text-white">
+          
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold max-w-4xl leading-tight">
             Find the perfect freelance services for your business
           </h1>
 
-          <p className="mt-4 text-gray-200 max-w-2xl">
+          <p className="mt-6 text-base md:text-xl text-gray-200 max-w-2xl font-light">
             Connect with top-tier talent in design, development, and marketing –
             fast, easy, and secure.
           </p>
 
-          {/* Hire & Contact Button */}
-          <div>
+          {/* Hire & Contact Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <button 
               onClick={()=> router.push("/team")}
-              className="px-8 py-3 m-3 bg-[#0d6efd] cursor-pointer text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300 hover:-translate-y-0.5"
+              className="px-8 py-3 cursor-pointer bg-[#0d6efd] hover:bg-blue-600 text-white text-lg font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 hover:-translate-y-1"
               >
               Hire a Freelancer
             </button>
             <button
               onClick={() => router.push("/contact")}
-              className="px-8 py-3 m-3 bg-green-600 cursor-pointer text-white text-lg font-semibold rounded-xl shadow-md transition-all duration-300 hover:-translate-y-0.5"
+              className="px-8 py-3 cursor-pointer bg-green-600 hover:bg-green-700 text-white text-lg font-bold rounded-xl shadow-lg shadow-green-500/30 transition-all duration-300 hover:-translate-y-1"
             >
               Start now for free
             </button>
           </div>
 
-          {/* Items */}
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
+          {/* FIX 3: Added 'hidden md:flex' 
+             This hides the small service tags on Mobile, because they take up too much space.
+             They will reappear on Laptop/Desktop.
+          */}
+          <div className="mt-8 hidden md:flex flex-wrap justify-center gap-3">
             {items.map((item) => (
               <button
                 key={item.label}
                 onClick={() => router.push(item.link)}
-                className="group flex items-center  cursor-pointer gap-2 px-5 py-2.5 rounded-full border border-white/40 text-sm font-medium text-white backdrop-blur-sm hover:border-white transition-all duration-300"
+                className="group flex items-center cursor-pointer gap-2 px-4 py-2 rounded-full border border-white/30 bg-white/10 text-sm font-medium text-white hover:bg-white/20 hover:border-white transition-all duration-300"
               >
                 <span>{item.label}</span>
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
@@ -96,23 +100,19 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* Stats */}
-          <div className="mt-6 flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/90 font-medium">
+          {/* Stats - Adjusted margin */}
+          <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs md:text-sm text-white/80 font-medium tracking-wide">
             <span>✓ 1M+ Projects</span>
             <span>✓ 500K+ Clients</span>
             <span>✓ 24/7 Support</span>
           </div>
         </div>
-
       </div>
 
-
-      {/* ADD Block */}
-      {/* CHANGE 2: Removed 'absolute inset-0'. Added 'mt-16' for spacing. */}
-      <div className="w-full flex flex-col items-center justify-center gap-4 text-center px-4 mt-16 mb-10">
-
-        <div className="w-full max-w-7xl mx-auto px-4 mb-6">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3">
+      {/* Second Section (Video) */}
+      <div className="w-full flex flex-col items-center justify-center gap-4 text-center px-4 mt-20 mb-10">
+        <div className="w-full max-w-7xl mx-auto px-4 mb-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             What success with Yandu looks like
           </h2>
           <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300">
@@ -120,10 +120,9 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* video block */}
-        <div className="relative w-full max-w-7xl h-[360px] md:h-[420px] lg:h-[580px] rounded-2xl overflow-hidden shadow-lg">
+        <div className="relative w-full max-w-7xl h-[250px] sm:h-[360px] md:h-[580px] rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
           <video
-            className="w-full h-full object-cover relative z-10"
+            className="w-full h-full object-cover"
             src="/videos/yandu.mp4"
             autoPlay loop muted controls
           />

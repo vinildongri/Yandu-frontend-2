@@ -1,29 +1,27 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 import Link from "next/link";
-import { 
-  ChevronDown, 
-  Code, 
-  Layout, 
-  BarChart, 
-  Smartphone, 
-  Server, 
-  Video, 
-  Palette, 
-  ShieldCheck, 
-  Share2, 
-  Database, 
-  UnplugIcon
+import {
+  ChevronDown, Code, Layout, Server, Video,
+  Palette, ShieldCheck, Share2, Database, UnplugIcon
 } from 'lucide-react';
 
-const Navbar = () => {
+// This interface fixes the red underlines by defining the prop types
+interface NavbarProps {
+  isMobile?: boolean;
+  closeMenu?: () => void;
+}
+
+const Navbar = ({ isMobile = false, closeMenu = () => { } }: NavbarProps) => {
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
   const navLinks = [
-    { 
-      name: 'Services', 
-      href: '/services', 
+    {
+      name: 'Services',
+      href: '/services',
       hasDropdown: true,
       items: [
         { name: 'Web & App Development', href: '/services/web-app-dev', icon: <Code className="w-4 h-4" />, desc: 'Custom apps & sites' },
-        // { name: 'App Development', href: '/services/app-dev', icon: <Smartphone className="w-4 h-4" />, desc: 'iOS & Android solutions' },
         { name: 'API & Backend Systems', href: '/services/api-backend-dev', icon: <Server className="w-4 h-4" />, desc: 'Robust server architecture' },
         { name: 'Video Editing', href: '/services/video-editing', icon: <Video className="w-4 h-4" />, desc: 'Professional post-production' },
         { name: 'Logo Design', href: '/services/logo-design', icon: <Palette className="w-4 h-4" />, desc: 'Brand identity & logos' },
@@ -31,39 +29,77 @@ const Navbar = () => {
         { name: 'Optimization & Security', href: '/services/optimization-security', icon: <ShieldCheck className="w-4 h-4" />, desc: 'Performance & protection' },
         { name: 'Social Media Strategy', href: '/services/social-media', icon: <Share2 className="w-4 h-4" />, desc: 'Growth & engagement' },
         { name: 'Database Management', href: '/services/database', icon: <Database className="w-4 h-4" />, desc: 'Data structure & storage' },
-        {name: 'UI/Ux Design', href: '/services/ui-ux-design',icon: <UnplugIcon className="w-4 h-4" />,desc:  'Clean and intuitive user interfaces'}
+        { name: 'UI/Ux Design', href: '/services/ui-ux-design', icon: <UnplugIcon className="w-4 h-4" />, desc: 'Clean and intuitive interfaces' }
       ]
     },
-    {name: "Our Team", href: "/team"},
-    // {name: "Meet The Minds", href: "/team"},
+    { name: "Our Team", href: "/team" },
   ];
 
+  // --- Mobile View ---
+  if (isMobile) {
+    return (
+      <nav className="flex flex-col w-full">
+        {navLinks.map((link) => (
+          <div key={link.name} className="border-b border-slate-100 dark:border-slate-800 last:border-none">
+            {link.hasDropdown ? (
+              <>
+                <button
+                  onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
+                  className="flex items-center justify-between w-full py-4 text-base font-bold text-slate-800 dark:text-white"
+                >
+                  {link.name}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === link.name ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Mobile Dropdown Items */}
+                {activeDropdown === link.name && (
+                  <div className="grid grid-cols-1 gap-1 pb-4 pl-2">
+                    {link.items?.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      >
+                        <div className="p-1.5 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                          {item.icon}
+                        </div>
+                        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{item.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <Link
+                href={link.href}
+                onClick={closeMenu}
+                className="block py-4 text-base font-bold text-slate-800 dark:text-white"
+              >
+                {link.name}
+              </Link>
+            )}
+          </div>
+        ))}
+      </nav>
+    );
+  }
+
+  // --- Desktop View ---
   return (
     <nav className="hidden md:flex items-center gap-10">
       {navLinks.map((link) => (
         <div key={link.name} className="relative group">
-          <Link
-            href={link.href}
-            className="flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300 transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400 py-2"
-          >
+          <Link href={link.href} className="flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 py-2 transition-colors">
             {link.name}
-            {link.hasDropdown && (
-              <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
-            )}
-            
-            <span className="absolute inset-x-0 bottom-0 h-[2px] bg-blue-600 dark:bg-blue-400 transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            {link.hasDropdown && <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />}
           </Link>
 
-          {/* Dropdown Menu - Adjusted width to 'w-80' and 'grid' for many items */}
           {link.hasDropdown && (
             <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <div className="w-[480px] p-4 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-2">
                 {link.items?.map((item) => (
-                  <Link 
-                    key={item.name} 
-                    href={item.href}
-                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-left group/item"
-                  >
+                  <Link key={item.name} href={item.href} className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group/item">
                     <div className="mt-1 p-1.5 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
                       {item.icon}
                     </div>
