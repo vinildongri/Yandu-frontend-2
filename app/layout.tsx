@@ -15,18 +15,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Yandu",
-    default: "Yandu - Find Freelance Services", 
-  },
-  description: "Connect with top-tier talent in development, design, and marketing.",
-  // icons: {
-    // Adding ?v=2 forces the browser to download the image again
-    // icon: "/images/yandu_logo.png?v=2", 
-    // apple: "/images/yandu_logo.png?v=2",
-  // },
+// export const metadata: Metadata = {
+//   title: {
+//     template: "%s | Yandu",
+//     default: "Yandu - Find Freelance Services", 
+//   },
+//   description: "Connect with top-tier talent in development, design, and marketing.",
+// };
+
+export const metadata = {
+  title: "Yandu | Freelancing Platform for Web, App & Digital Services",
+  description:
+    "Yandu is a freelancing marketplace offering Web & App Development, API & Backend Systems, Video Editing, Logo Design, UI/UX Design and more.",
+  keywords:
+    "Yandu freelancing, Web development services, App development India, API backend systems, Video editing services, Logo design services"
 };
+
 
 
 export default function RootLayout({

@@ -41,7 +41,7 @@ const router = useRouter()
         "Everything you need to know about onboarding, contracts, and starting your first project with Yandu.",
       icon: <BookOpen size={28} />,
       color: "blue",
-      href: "/help-centre/getting-started",
+      href: "/contact",
     },
     {
       id: 2,
@@ -50,7 +50,7 @@ const router = useRouter()
         "Understand our milestone payment structure, invoices, and refund policies.",
       icon: <CreditCard size={28} />,
       color: "emerald",
-      href: "/help-centre/billing-payments",
+      href: "/billing-payments",
     },
     {
       id: 3,
@@ -59,7 +59,7 @@ const router = useRouter()
         "How we track progress, handle revisions, and communicate during the development phase.",
       icon: <Settings size={28} />,
       color: "purple",
-      href: "/help-centre/project-management",
+      href: "/project-management",
     },
     {
       id: 4,
@@ -68,7 +68,8 @@ const router = useRouter()
         "Guides on hosting, domain setup, and troubleshooting common issues after launch.",
       icon: <FileText size={28} />,
       color: "orange",
-      href: "/help-centre/technical-support",
+      // href: "/technical-support",
+      href: "/howItWorks"
     },
   ];
 
