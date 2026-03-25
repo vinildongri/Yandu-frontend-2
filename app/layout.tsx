@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,14 +15,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-// export const metadata: Metadata = {
-//   title: {
-//     template: "%s | Yandu",
-//     default: "Yandu - Find Freelance Services", 
-//   },
-//   description: "Connect with top-tier talent in development, design, and marketing.",
-// };
 
 export const metadata = {
   title: "Yandu | Freelancing Platform for Web, App & Digital Services",
@@ -43,14 +36,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              duration: 2500,
+              style: {
+                background: "#111",
+                color: "#fff",
+                borderRadius: "10px",
+                padding: "14px 16px",
+              },
+            }}
+          />
 
-      <Header />
-        {children}
+          <Header />
+          {children}
 
-      <Footer />
-      </ThemeProvider>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

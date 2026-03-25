@@ -87,7 +87,7 @@ const Navbar = ({ isMobile = false, closeMenu = () => { } }: NavbarProps) => {
 
   // --- Desktop View ---
   return (
-    <nav className="hidden md:flex items-center gap-10">
+    <nav className="hidden md:flex items-center gap-4">
       {navLinks.map((link) => (
         <div key={link.name} className="relative group">
           <Link href={link.href} className="flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 py-2 transition-colors">
