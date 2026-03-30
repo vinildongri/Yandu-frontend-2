@@ -43,10 +43,11 @@ const submitHandle = async (e: React.FormEvent) => {
       return;
     }
 
-    toast.success("Account created successfully 🎉");
+    // toast.success("Account created successfully 🎉");
+    toast.success("Account created. Please check your email for the verification OTP.");
 
     setTimeout(() => {
-      router.push("/login");
+      router.push("/verify-otp");
     }, 1500);
 
   } catch (error) {

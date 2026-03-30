@@ -76,7 +76,7 @@ const Header = () => {
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* 3. Condition: Only GetStarted show if NOT on /contact page and Profile */}
+          {/* 3. Condition: Login/Signup for guests, Get Started (conditional) + Avatar for logged in */}
           {!isLoggedIn ? (
             <div className="hidden sm:flex items-center gap-3">
               <button
@@ -94,116 +94,110 @@ const Header = () => {
               </button>
             </div>
           ) : (
-            pathname !== "/contact" && (
-              // 1. Attached the dropdownRef here!
-              <div className="hidden sm:flex items-center gap-3 relative" ref={dropdownRef}>
+            // 1. Attached the dropdownRef here! No conditional wrapper on the main div.
+            <div className="hidden sm:flex items-center gap-3 relative" ref={dropdownRef}>
 
+              {/* 2. ONLY hide the 'Get Started' button on the contact page */}
+              {pathname !== "/contact" && (
                 <button
                   onClick={() => router.push("/contact")}
                   className="px-5 py-2.5 cursor-pointer bg-blue-600 text-white text-sm font-bold rounded-full hover:bg-blue-700 transition-all active:scale-95"
                 >
                   Get Started
                 </button>
+              )}
 
-                {/* Avatar */}
-                <div
-                  onClick={() => setOpenProfile(!openProfile)}
-                  className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer border-2 border-transparent hover:border-slate-300 dark:hover:border-slate-600 transition-all"
-                >
-                  {user?.name?.charAt(0).toUpperCase()}
-                </div>
-
-                {/* Profile Dropdown */}
-                {openProfile && (
-                  <div className="absolute right-0 top-14 w-72 bg-white dark:bg-[#1e1e1e] shadow-2xl rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50">
-
-                    {/* Header Info */}
-                    <div className="flex items-center gap-3 p-4 border-b border-gray-200 dark:border-gray-800">
-                      <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg shrink-0">
-                        {user?.name?.charAt(0).toUpperCase()}
-                      </div>
-                      <div className="flex flex-col overflow-hidden">
-                        <span className="font-semibold text-slate-900 dark:text-white truncate">{user?.name}</span>
-                        <span className="text-sm text-slate-500 truncate">{user?.email}</span>
-                      </div>
-                    </div>
-
-                    {/* Online Status Toggle (Optional visual touch like Upwork) */}
-                    {/* <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 hover:bg-slate-50 dark:hover:bg-gray-800/50 cursor-pointer transition-colors">
-                      <span className="text-sm font-medium text-slate-700 dark:text-slate-200">Online for messages</span>
-                      <div className="w-8 h-4 bg-green-500 rounded-full relative">
-                        <div className="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full shadow-sm"></div>
-                      </div>
-                    </div> */}
-
-                    {/* Menu Links */}
-                    <div className="flex flex-col py-2">
-                      <button
-                        onClick={() => {
-                          router.push("/profile");
-                          setOpenProfile(false);
-                        }}
-                        className="flex cursor-pointer items-center gap-3 w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-gray-800/80 transition-colors"
-                      >
-                        <User size={18} className="text-slate-500 dark:text-slate-400" />
-                        Your Profile
-                      </button>
-
-                      {/* Theme Toggle (Wrapper adjusted to match list styling) */}
-                      <div className="px-3 cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200">
-                        <ThemeToggle />
-                      </div>
-
-                      <button
-                        onClick={() => { router.push("/help-centre"); setIsOpen(false); }}
-                        className="flex cursor-pointer items-center gap-3 w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-gray-800/80 transition-colors"
-                      >
-                        <HelpCircle size={18} className="text-slate-500 dark:text-slate-400" />
-                        Help
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          router.push("/settings");
-                          setOpenProfile(false);
-                        }}
-                        className="flex items-center cursor-pointer gap-3 w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-gray-800/80 transition-colors"
-                      >
-                        <Settings size={18} className="text-slate-500 dark:text-slate-400" />
-                        Account Settings
-                      </button>
-
-                      <div className="h-px bg-gray-200 dark:bg-gray-800 my-1"></div>
-
-                      <button
-                        onClick={async () => {
-                          const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`, {
-                            method: "GET",
-                            credentials: "include"
-                          });
-
-                          console.log(await res.json());
-                          setOpenProfile(false);
-                          router.push("/");
-                          toast.success("Logged out successfully");
-
-                          setTimeout(() => {
-                            window.location.reload();
-                          }, 1500);
-                        }}
-                        className="flex items-center gap-3 w-full cursor-pointer text-left px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
-                      >
-                        <LogOut size={18} />
-                        Log out
-                      </button>
-                    </div>
-
-                  </div>
-                )}
-
+              {/* Avatar (Always visible when logged in) */}
+              <div
+                onClick={() => setOpenProfile(!openProfile)}
+                className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer border-2 border-transparent hover:border-slate-300 dark:hover:border-slate-600 transition-all"
+              >
+                {user?.name?.charAt(0).toUpperCase()}
               </div>
-            )
+
+              {/* Profile Dropdown */}
+              {openProfile && (
+                <div className="absolute right-0 top-14 w-72 bg-white dark:bg-[#1e1e1e] shadow-2xl rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+
+                  {/* Header Info */}
+                  <div className="flex items-center gap-3 p-4 border-b border-gray-200 dark:border-gray-800">
+                    <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg shrink-0">
+                      {user?.name?.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="flex flex-col overflow-hidden">
+                      <span className="font-semibold text-slate-900 dark:text-white truncate">{user?.name}</span>
+                      <span className="text-sm text-slate-500 truncate">{user?.email}</span>
+                    </div>
+                  </div>
+
+                  {/* Menu Links */}
+                  <div className="flex flex-col py-2">
+                    <button
+                      onClick={() => {
+                        router.push("/profile");
+                        setOpenProfile(false);
+                      }}
+                      className="flex cursor-pointer items-center gap-3 w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-gray-800/80 transition-colors"
+                    >
+                      <User size={18} className="text-slate-500 dark:text-slate-400" />
+                      Your Profile
+                    </button>
+
+                    {/* Theme Toggle */}
+                    <div className="px-3 cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200">
+                      <ThemeToggle />
+                    </div>
+
+                    <button
+                      onClick={() => { router.push("/help-centre"); setIsOpen(false); }}
+                      className="flex cursor-pointer items-center gap-3 w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-gray-800/80 transition-colors"
+                    >
+                      <HelpCircle size={18} className="text-slate-500 dark:text-slate-400" />
+                      Help
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        router.push("/settings");
+                        setOpenProfile(false);
+                      }}
+                      className="flex items-center cursor-pointer gap-3 w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-gray-800/80 transition-colors"
+                    >
+                      <Settings size={18} className="text-slate-500 dark:text-slate-400" />
+                      Account Settings
+                    </button>
+
+                    <div className="h-px bg-gray-200 dark:bg-gray-800 my-1"></div>
+
+                    <button
+                      onClick={async () => {
+                        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`, {
+                          method: "GET",
+                          credentials: "include"
+                        });
+
+                        console.log(await res.json());
+                        setOpenProfile(false);
+                        router.push("/");
+                        toast.success("Logged out successfully");
+
+                        setTimeout(() => {
+                          window.location.reload();
+                        }, 1500);
+                      }}
+                      className="flex items-center gap-3 w-full cursor-pointer text-left px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
+                    >
+                      <LogOut size={18} />
+                      Log out
+                    </button>
+                  </div>
+
+                </div>
+              )}
+
+            </div>
           )}
+
         </div>
       </div>
 

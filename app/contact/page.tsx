@@ -30,10 +30,10 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
   // --- TOAST STATE ---
-  const [toast, setToast] = useState({ 
-    show: false, 
-    title: '', 
-    message: '', 
+  const [toast, setToast] = useState({
+    show: false,
+    title: '',
+    message: '',
     type: 'success' // 'success' | 'error'
   });
 
@@ -67,6 +67,7 @@ const Contact = () => {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/send/mail`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(formData)
       });
 
@@ -91,24 +92,21 @@ const Contact = () => {
       {/* --- MNC LEVEL TOAST (TOP MIDDLE) --- */}
       {toast.show && (
         <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[420px] animate-in slide-in-from-top-4 fade-in duration-300 px-4">
-          <div className={`relative overflow-hidden rounded-xl border p-4 shadow-2xl bg-white dark:bg-[#111] ${
-            toast.type === 'success' 
-              ? 'border-emerald-100 dark:border-emerald-900/30' 
+          <div className={`relative overflow-hidden rounded-xl border p-4 shadow-2xl bg-white dark:bg-[#111] ${toast.type === 'success'
+              ? 'border-emerald-100 dark:border-emerald-900/30'
               : 'border-red-100 dark:border-red-900/30'
-          }`}>
-            
+            }`}>
+
             {/* Status Colored Line (Left Accent) */}
-            <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${
-              toast.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
-            }`} />
+            <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${toast.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
+              }`} />
 
             <div className="flex items-start gap-4">
               {/* Icon Container */}
-              <div className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full shadow-inner ${
-                toast.type === 'success' 
-                  ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400' 
+              <div className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full shadow-inner ${toast.type === 'success'
+                  ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400'
                   : 'bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400'
-              }`}>
+                }`}>
                 {toast.type === 'success' ? <ShieldCheck size={20} /> : <AlertTriangle size={20} />}
               </div>
 
@@ -123,7 +121,7 @@ const Contact = () => {
               </div>
 
               {/* Close Button */}
-              <button 
+              <button
                 onClick={() => setToast(prev => ({ ...prev, show: false }))}
                 className="shrink-0 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
               >
