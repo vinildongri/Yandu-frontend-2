@@ -39,7 +39,7 @@ const Login = () => {
       return;
     }
 
-    toast.success("Login successful 🎉");
+    toast.success("Login successful !");
 
     router.push("/");
 

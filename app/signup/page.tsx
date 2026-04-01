@@ -15,47 +15,48 @@ const Signup = () => {
 
     const router = useRouter();
 
-const submitHandle = async (e: React.FormEvent) => {
-  e.preventDefault();
+    const submitHandle = async (e: React.FormEvent) => {
+        e.preventDefault();
 
-  try {
-    setLoading(true);
+        try {
+            setLoading(true);
 
-    const name = `${firstName} ${lastName}`;
+            const name = `${firstName} ${lastName}`;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/register`, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ name, email, password }),
-    });
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/register`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, password }),
+            });
 
-    const data = await res.json();
+            const data = await res.json();
 
-    if (!res.ok) {
-      // backend validation errors
-      if (data.errors && Array.isArray(data.errors)) {
-        data.errors.forEach((err: any) => {
-          toast.error(err.message);
-        });
-      } else {
-        toast.error(data.message || "Something went wrong");
-      }
-      return;
-    }
+            if (!res.ok) {
+                // backend validation errors
+                if (data.errors && Array.isArray(data.errors)) {
+                    data.errors.forEach((err: any) => {
+                        toast.error(err.message);
+                    });
+                } else {
+                    toast.error(data.message || "Something went wrong");
+                }
+                return;
+            }
 
-    // toast.success("Account created successfully 🎉");
-    toast.success("Account created. Please check your email for the verification OTP.");
+            // toast.success("Account created successfully 🎉");
+            toast.success("Account created. Please check your email for the verification OTP.");
 
-    setTimeout(() => {
-      router.push("/verify-otp");
-    }, 1500);
+            setTimeout(() => {
+                //   router.push("/verify-otp");
+                router.push(`/verify-otp?email=${email}`)
+            }, 1500);
 
-  } catch (error) {
-    toast.error("Server error. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+        } catch (error) {
+            toast.error("Server error. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <section className="min-h-screen bg-white dark:bg-[#0f0f0f] flex flex-col items-center pt-30 px-4 sm:px-6 font-sans">
