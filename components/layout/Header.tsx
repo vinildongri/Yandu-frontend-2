@@ -13,6 +13,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -29,6 +30,29 @@ const Header = () => {
 
     checkUser();
   }, [pathname]); // re-run whenever route changes
+
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error("Logout failed");
+      }
+      // optional: clear user state
+      const data = await res.json();
+      console.log(data.message);
+
+      localStorage.removeItem("user");
+
+      window.location.href = "/";
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
   // Add this right below your other useState lines
@@ -170,26 +194,13 @@ const Header = () => {
                     <div className="h-px bg-gray-200 dark:bg-gray-800 my-1"></div>
 
                     <button
-                      onClick={async () => {
-                        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`, {
-                          method: "GET",
-                          credentials: "include"
-                        });
-
-                        console.log(await res.json());
-                        setOpenProfile(false);
-                        router.push("/");
-                        toast.success("Logged out successfully");
-
-                        setTimeout(() => {
-                          window.location.reload();
-                        }, 1500);
-                      }}
-                      className="flex items-center gap-3 w-full cursor-pointer text-left px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
+                      onClick={handleLogout}
+                      className="flex cursor-pointer items-center gap-3 w-full text-left ms-4 py-2 font-medium text-red-500 hover:text-red-600 transition-colors"
                     >
-                      <LogOut size={18} />
+                      <LogOut size={20} strokeWidth={1.5} />
                       Log out
                     </button>
+
                   </div>
 
                 </div>
@@ -299,34 +310,13 @@ const Header = () => {
                 </button>
 
                 <button
-                  onClick={async () => {
-                    try {
-                      const res = await fetch(
-                        `${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`,
-                        {
-                          method: "GET",
-                          credentials: "include",
-                        }
-                      );
-
-                      const data = await res.json();
-
-                      if (res.ok) {
-                        toast.success(data.message); // ✅ backend message
-                        setIsOpen(false);
-                        router.push("/");
-                      } else {
-                        toast.error(data.message || "Logout failed");
-                      }
-                    } catch (error) {
-                      toast.error("Something went wrong");
-                      console.error(error);
-                    }
-                  }}
-                  className="w-full text-left py-4 font-medium text-red-500 hover:text-red-600 transition-colors"
+                  onClick={handleLogout}
+                  className="flex cursor-pointer items-center gap-3 w-full text-left py-4 font-medium text-red-500 hover:text-red-600 transition-colors"
                 >
+                  <LogOut size={20} strokeWidth={1.5} />
                   Log out
                 </button>
+
               </div>
 
             </div>
