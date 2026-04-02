@@ -300,18 +300,28 @@ const Header = () => {
 
                 <button
                   onClick={async () => {
-                    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`, {
-                      method: "GET",
-                      credentials: "include"
-                    });
-                    console.log(await res.json());
-                    setIsOpen(false);
-                    router.push("/");
-                    toast.success("Logged out successfully");
+                    try {
+                      const res = await fetch(
+                        `${process.env.NEXT_PUBLIC_BACKEND_URL}/logout`,
+                        {
+                          method: "GET",
+                          credentials: "include",
+                        }
+                      );
 
-                    setTimeout(() => {
-                      window.location.reload();
-                    }, 1500);
+                      const data = await res.json();
+
+                      if (res.ok) {
+                        toast.success(data.message); // ✅ backend message
+                        setIsOpen(false);
+                        router.push("/");
+                      } else {
+                        toast.error(data.message || "Logout failed");
+                      }
+                    } catch (error) {
+                      toast.error("Something went wrong");
+                      console.error(error);
+                    }
                   }}
                   className="w-full text-left py-4 font-medium text-red-500 hover:text-red-600 transition-colors"
                 >
