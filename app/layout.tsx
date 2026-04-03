@@ -6,6 +6,10 @@ import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "react-hot-toast";
 
+// 1. ADD THIS IMPORT: Bring in your new Providers component
+// (Adjust the path if you placed Providers.tsx inside the components folder)
+import Providers from "./providers"; 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,8 +28,6 @@ export const metadata = {
     "Yandu freelancing, Web development services, App development India, API backend systems, Video editing services, Logo design services"
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,24 +39,30 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          
+          {/* 2. WRAP YOUR APP IN PROVIDERS */}
+          <Providers>
+            
+            <Toaster
+              position="top-center"
+              toastOptions={{
+                duration: 2500,
+                style: {
+                  background: "#111",
+                  color: "#fff",
+                  borderRadius: "10px",
+                  padding: "14px 16px",
+                },
+              }}
+            />
 
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              duration: 2500,
-              style: {
-                background: "#111",
-                color: "#fff",
-                borderRadius: "10px",
-                padding: "14px 16px",
-              },
-            }}
-          />
+            <Header />
+            {children}
+            <Footer />
 
-          <Header />
-          {children}
+          </Providers>
+          {/* END WRAPPER */}
 
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

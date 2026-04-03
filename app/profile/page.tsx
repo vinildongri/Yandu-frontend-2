@@ -1,147 +1,155 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 
-// 1. Added optional avatar string to the interface
-interface User {
+// 1. Define the User Interfaces
+export interface User {
     _id: string;
     name: string;
     email: string;
     role: string;
+    authProvider: string;
     isVerified: boolean;
-    avatar?: string; 
+    createdAt: string;
+    updatedAt: string;
 }
 
+export interface ProfileResponse {
+    user: User;
+}
+
+// 2. Define the fetcher function
+const fetchUserProfile = async (): Promise<ProfileResponse> => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/me`, {
+        method: "GET",
+        credentials: "include",
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch profile data");
+
+    return res.json();
+};
+
 const Profile = () => {
-    const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    // 3. React Query handles loading, error, and caching
+    const { data, isLoading, isError, error } = useQuery({
+        queryKey: ["userProfile"],
+        queryFn: fetchUserProfile,
+        retry: 1,
+    });
 
-    // 2. Add state for image preview and a ref for the hidden file input
-    const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const fileInputRef = useRef<HTMLInputElement>(null);
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center text-gray-600 dark:text-gray-400 bg-slate-50 dark:bg-black min-h-screen">
+                Loading profile...
+            </div>
+        );
+    }
 
-    useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/me`, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include'
-                });
+    if (isError) {
+        return (
+            <div className="flex justify-center items-center text-red-500 bg-slate-50 dark:bg-black min-h-screen">
+                Error: {error instanceof Error ? error.message : "Something went wrong"}
+            </div>
+        );
+    }
 
-                if (!response.ok) throw new Error('Failed to fetch profile data');
+    if (!data?.user) {
+        return (
+            <div className="flex justify-center items-center text-gray-600 dark:text-gray-400 bg-slate-50 dark:bg-black min-h-screen">
+                No profile data found.
+            </div>
+        );
+    }
 
-                const data = await response.json();
-                setUser(data.user);
-                
-                // If the user already has an avatar from the database, set it
-                if (data.user.avatar) {
-                    setImagePreview(data.user.avatar);
-                }
-                
-            } catch (err) {
-                if (err instanceof Error) {
-                    setError(err.message);
-                } else {
-                    setError("An unknown error occurred");
-                }
-            } finally {
-                setIsLoading(false);
-            }
-        };
+    const user = data.user;
 
-        fetchProfile();
-    }, []);
-
-    // 3. Function to handle when a user selects a file
-    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-
-        // Create a temporary local URL to show the image instantly
-        const previewUrl = URL.createObjectURL(file);
-        setImagePreview(previewUrl);
-
-        // TODO: Send this file to your backend
-        // Example:
-        // const formData = new FormData();
-        // formData.append('avatar', file);
-        // await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/upload-avatar`, {
-        //     method: 'POST',
-        //     body: formData,
-        //     credentials: 'include'
-        // });
+    // Helper to format the creation date
+    const formatJoinedDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+        });
     };
 
-    if (isLoading) return <div className="text-center mt-20 text-gray-500">Loading profile...</div>;
-    if (error) return <div className="text-center mt-20 text-red-500">Error: {error}</div>;
-    if (!user) return <div className="text-center mt-20 text-gray-500">No profile data found.</div>;
-
-    // Get the first letter of the name safely
-    const firstLetter = user.name ? user.name.charAt(0).toUpperCase() : "?";
+    // Helper to get the first initial and capitalize it
+    const userInitial = user.name.charAt(0).toUpperCase();
 
     return (
-        <div className="max-w-6xl mx-auto p-6 pt-12 md:pt-22">
-            <div className="bg-white dark:bg-zinc-900 shadow-md rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
-                
-                {/* Avatar Section */}
-                <div className="relative group shrink-0">
-                    <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-100 dark:border-zinc-800 flex items-center justify-center bg-blue-600 text-white text-3xl font-bold shadow-sm">
-                        {imagePreview ? (
-                            <img 
-                                src={imagePreview} 
-                                alt={`${user.name}'s avatar`} 
-                                className="w-full h-full object-cover"
-                            />
-                        ) : (
-                            <span>{firstLetter}</span>
-                        )}
+        <div className="min-h-screen bg-slate-50 dark:bg-black pt-20 px-4 sm:px-6 font-sans antialiased text-[#0f1111] dark:text-white">
+            <div className="max-w-4xl mx-auto space-y-6 sm:space-y-10">
+                {/* Page Title */}
+                <h1 className="text-2xl sm:text-3xl font-bold">My Profile</h1>
+
+                {/* --- Top Card (Identity & Main Action) --- */}
+                <div className="bg-white dark:bg-[#0a0a0a] p-6 sm:p-8 rounded-xl shadow-sm border border-slate-100 dark:border-gray-800 flex flex-col sm:flex-row items-center sm:justify-between gap-6 sm:gap-0">
+                    <div className="flex flex-col sm:flex-row items-center text-center sm:text-left sm:space-x-6">
+                        {/* Avatar */}
+                        <div className="w-20 h-20 mb-4 sm:mb-0 bg-indigo-50 dark:bg-indigo-900/20 rounded-full flex shrink-0 items-center justify-center border-2 border-indigo-100 dark:border-indigo-800/50">
+                            <span className="text-4xl font-bold text-indigo-700 dark:text-indigo-400">
+                                {userInitial}
+                            </span>
+                        </div>
+
+                        {/* User Identity Details */}
+                        <div className="space-y-1 w-full overflow-hidden">
+                            <p className="text-xl sm:text-2xl font-semibold text-[#0f1111] dark:text-white truncate">
+                                {user.name}
+                            </p>
+                            <p className="text-sm sm:text-base text-slate-500 dark:text-gray-400 truncate">
+                                {user.email}
+                            </p>
+                        </div>
                     </div>
 
-                    {/* Hidden File Input */}
-                    <input 
-                        type="file" 
-                        ref={fileInputRef} 
-                        onChange={handleImageChange} 
-                        className="hidden" 
-                        accept="image/*"
-                    />
-
-                    {/* Camera Button Overlay */}
-                    <button 
-                        onClick={() => fileInputRef.current?.click()}
-                        className="absolute bottom-0 right-0 bg-gray-900 dark:bg-zinc-700 text-white p-2 rounded-full border-2 border-white dark:border-zinc-900 hover:bg-gray-700 transition shadow-md"
-                        aria-label="Upload profile picture"
+                    <Link
+                        href="/update-profile"
+                        className="w-full sm:w-auto bg-indigo-600 dark:bg-[#1E3A8A] text-white font-medium text-sm py-2.5 px-6 rounded-lg hover:bg-indigo-700 dark:hover:bg-[#172554] transition-colors inline-block text-center shadow-sm"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
-                        </svg>
-                    </button>
+                        Edit
+                    </Link>
                 </div>
 
-                {/* User Info Section */}
-                <div className="flex-1 w-full text-center md:text-left">
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{user.name}</h1>
-                    <p className="text-sm text-gray-400 mt-0.5">{user.email}</p>
+                {/* --- Bottom Card (Personal Information List) --- */}
+                <div className="bg-white dark:bg-[#0a0a0a] rounded-xl shadow-sm border border-slate-100 dark:border-gray-800 overflow-hidden">
+                    <div className="p-6 sm:p-8 pb-4 border-b border-slate-100 dark:border-gray-800/50">
+                        <h2 className="text-lg sm:text-xl font-semibold text-[#0f1111] dark:text-white">
+                            Personal Information
+                        </h2>
+                    </div>
 
-                    {user.isVerified && (
-                        <span className="inline-block mt-3 px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
-                            Verified Account
-                        </span>
-                    )}
+                    <ul className="divide-y divide-slate-100 dark:divide-gray-800">
+                        {/* Row 1: Account Status */}
+                        <li className="p-6 sm:p-8">
+                            <div className="flex flex-col sm:grid sm:grid-cols-2 gap-2 sm:gap-x-12 w-full sm:w-3/4 sm:items-center">
+                                <span className="text-sm text-slate-500 dark:text-gray-400 font-medium">
+                                    Account Status
+                                </span>
+                                <span className="flex items-center text-slate-900 dark:text-gray-200">
+                                    <div
+                                        className={`w-2.5 h-2.5 rounded-full mr-2.5 shrink-0 ${
+                                            user.isVerified ? "bg-green-500" : "bg-yellow-500"
+                                        }`}
+                                    ></div>
+                                    {user.isVerified ? "Verified Member" : "Unverified"}
+                                </span>
+                            </div>
+                        </li>
+
+                        {/* Row 2: Customer Since */}
+                        <li className="p-6 sm:p-8">
+                            <div className="flex flex-col sm:grid sm:grid-cols-2 gap-2 sm:gap-x-12 w-full sm:w-3/4 sm:items-center">
+                                <span className="text-sm text-slate-500 dark:text-gray-400 font-medium">
+                                    Customer Since
+                                </span>
+                                <span className="text-slate-900 dark:text-gray-200">
+                                    {formatJoinedDate(user.createdAt)}
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-
-                {/* Navigation Button */}
-                <Link
-                    href="/profile/update" 
-                    className="bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition w-full md:w-auto text-center font-medium shrink-0"
-                >
-                    Update Profile
-                </Link>
-                
             </div>
         </div>
     );

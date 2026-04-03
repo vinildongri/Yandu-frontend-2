@@ -175,7 +175,7 @@ const Signup = () => {
                     <a href="#" className="hover:text-[#c40000] dark:hover:text-white hover:underline">Help</a>
                 </div>
                 <p className="text-[11px] text-[#565959] dark:text-gray-500">
-                    © 1996-2026, Yandu, Inc. or its affiliates
+                    © 2026, Yandu, Inc. or its affiliates
                 </p>
             </div>
 
