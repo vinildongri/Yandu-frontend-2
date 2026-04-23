@@ -87,7 +87,7 @@ const Login = () => {
                 Password
               </label>
               <p 
-                onClick={() => router.push("/forgot-password")}
+                onClick={() => router.push("/password/forgot")}
                 className="text-[12px] text-[#0066c0] dark:text-blue-500 hover:text-[#c40000] dark:hover:text-white hover:underline cursor-pointer"
               >
                 Forgot your password?
