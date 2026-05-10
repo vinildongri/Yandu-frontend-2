@@ -1,4 +1,4 @@
-"use client";
+import { Metadata } from "next";
 
 import React from "react";
 import Link from "next/link";
@@ -15,6 +15,12 @@ const categories = [
   { title: "Database Management", image: "/servicesPics/dataBase.jpg", href: "/services/database" },
   {title: "UI/UX Design", image:"/servicesPics/uiUxDesign.jpg", href: "/services/ui-ux-design"}
 ];
+
+
+export const metadata: Metadata = {
+  title: "Our Services | Web, App & UI/UX Development",
+  description: "Explore Yandu's premium digital services. We provide elite MERN stack engineers, native mobile developers, and high-end video editing.",
+}
 
 export default function ServicesPage() {
   return (

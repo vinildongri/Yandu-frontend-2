@@ -1,6 +1,12 @@
 import React from 'react';
-import { Linkedin, Twitter, Mail, Globe, PenTool, Video, User, Code, Github } from 'lucide-react';
+import { Linkedin, Mail, User, Github } from 'lucide-react';
 import Link from "next/link"
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Meet the Leadership Team",
+  description: "Discover the minds behind Yandu. Combining robust engineering with expert creative direction from Creative Lead Pavan Kumar and Media Specialist Joshua Sunny.",
+}
 
 const Team = () => {
   return (

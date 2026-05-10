@@ -1,4 +1,4 @@
-import React from "react";
+import { Metadata } from "next";
 import Link from "next/link";
 import { 
   CheckCircle, 
@@ -21,6 +21,11 @@ const SectionHeader = ({ title, subtitle }: { title: string; subtitle: string })
     </h2>
   </div>
 );
+
+export const metadata: Metadata = {
+  title: "Startup Cities | Global Reach",
+  description: "Discover how Yandu is empowering digital ecosystems and startups across major tech hubs with premium freelance talent.",
+}
 
 export default function StartupCities() {
   return (

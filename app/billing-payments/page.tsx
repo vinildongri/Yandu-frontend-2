@@ -1,4 +1,4 @@
-import React from "react";
+import { Metadata } from "next";
 import Link from "next/link";
 import {
    CheckCircle,
@@ -21,6 +21,16 @@ const SectionHeader = ({ title, subtitle }: { title: string; subtitle: string })
       </h2>
    </div>
 );
+
+
+export const metadata: Metadata = {
+   title: "Secure Billing & Payments",
+   robots: {
+      index: false,  // Prevents Google from showing this in search results
+      follow: false, // Prevents crawlers from clicking links on this page
+      nocache: true, // Prevents Google from saving a cached snapshot of invoices
+   },
+}
 
 const BillingPayments = () => {
    return (

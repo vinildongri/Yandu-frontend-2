@@ -1,4 +1,4 @@
-import React from "react";
+import { Metadata } from "next";
 import Link from "next/link";
 import {
     CheckCircle,
@@ -21,6 +21,12 @@ const SectionHeader = ({ title, subtitle }: { title: string; subtitle: string })
         </h2>
     </div>
 );
+
+export const metadata: Metadata = {
+    title: "Agile Development Workflow & Management | Yandu",
+    description: "Experience total clarity with Yandu's Agile workflows. Track milestones in real-time with 2-week sprints, dedicated project managers, and fractional CTO services.",
+    keywords: ["agile development process", "freelance project management", "fractional CTO", "dedicated PM for startups", "Yandu workflow"]
+}
 
 const ProjectManagement = () => {
     return (

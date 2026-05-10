@@ -15,7 +15,7 @@ const Page = () => {
   const params = useParams();
   const serviceName = params.serviceName as string;
 
-  const Services : Record<string, JSX.Element> = {
+  const Services: Record<string, JSX.Element> = {
     "web-app-dev": <WebAppDev />,
     "video-editing": <VideoEditing />,
     "api-backend-dev": <ApiBackendSystem />,
@@ -27,15 +27,15 @@ const Page = () => {
     "optimization-security": <OptimizationSecurity />
   }
 
-  const ServiceComponent  = Services[serviceName];
+  const ServiceComponent = Services[serviceName];
 
-  if(!ServiceComponent ){
+  if (!ServiceComponent) {
     notFound();
   }
 
   return (
     <div className="py-20">
-      {ServiceComponent }
+      {ServiceComponent}
     </div>
   );
 };
