@@ -6,13 +6,13 @@ import { ArrowLeft, Target, Loader2, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 
 // 1. Update the type definition to expect a Promise
-export default function UpdateProjectPage({ params }: { params: Promise<{ id: string }> }) {
+const UpdateProjectPage = ({ params }: { params: Promise<{ id: string }> }) => {
     const router = useRouter();
-    
+
     // 2. Unwrap the params Promise using React.use()
     const resolvedParams = use(params);
     const projectId = resolvedParams.id;
-    
+
     const [isLoading, setIsLoading] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -27,6 +27,7 @@ export default function UpdateProjectPage({ params }: { params: Promise<{ id: st
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/project/update/${projectId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include', // <--- ADD THIS EXACT LINE
                 body: JSON.stringify({
                     title: formData.title || undefined,
                     budget: formData.budget ? Number(formData.budget) : undefined,
@@ -86,7 +87,7 @@ export default function UpdateProjectPage({ params }: { params: Promise<{ id: st
 
                     <div className="mt-12 flex flex-col-reverse md:flex-row justify-end gap-4 relative z-10">
                         <Link href="/project-management" className="px-8 py-4 text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-center border border-slate-300 dark:border-slate-700 rounded-lg">Cancel</Link>
-                        <button type="submit" disabled={isLoading} className="flex items-center justify-center gap-2 px-10 py-4 bg-blue-600 text-white text-sm font-bold rounded-lg hover:bg-blue-700 transition-all shadow-sm disabled:opacity-50">
+                        <button type="submit" disabled={isLoading} className="flex items-center cursor-pointer justify-center gap-2 px-10 py-4 bg-blue-600 text-white text-sm font-bold rounded-lg hover:bg-blue-700 transition-all shadow-sm disabled:opacity-50">
                             {isLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <Target className="w-4 h-4" />} Deploy Updates
                         </button>
                     </div>
@@ -94,4 +95,6 @@ export default function UpdateProjectPage({ params }: { params: Promise<{ id: st
             </main>
         </div>
     );
-}
+};
+
+export default UpdateProjectPage;
