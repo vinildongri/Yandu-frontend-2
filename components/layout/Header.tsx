@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './Navbar';
 import { ThemeToggle } from '../ThemeToggle';
 import { useRouter, usePathname } from 'next/navigation'; // 1. Import usePathname
-import { HelpCircle, LogOut, Menu, Settings, User, X } from 'lucide-react';
+import { HelpCircle, LogOut, Menu, Rocket, Settings, User, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const Header = () => {
@@ -191,6 +191,17 @@ const Header = () => {
                       Account Settings
                     </button>
 
+                    <button
+                      onClick={() => {
+                        router.push("/project-management");
+                        setOpenProfile(false);
+                      }}
+                      className="flex items-center cursor-pointer gap-3 w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-gray-800/80 transition-colors"
+                    >
+                      <Rocket size={18} className="text-slate-500 dark:text-slate-400" />
+                      Projects
+                    </button>
+
                     <div className="h-px bg-gray-200 dark:bg-gray-800 my-1"></div>
 
                     <button
@@ -255,7 +266,7 @@ const Header = () => {
                 Login
               </button>
               <button
-                onClick={() => { router.push("/signupPage"); setIsOpen(false); }}
+                onClick={() => { router.push("/signup"); setIsOpen(false); }}
                 className="w-full cursor-pointer py-4 bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20"
               >
                 Sign Up
@@ -300,6 +311,14 @@ const Header = () => {
                   className="w-full text-left py-4 font-medium text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-gray-800 hover:text-blue-600 transition-colors"
                 >
                   Account Settings
+                </button>
+
+                <button
+                  onClick={() => { router.push("/project-management"); setIsOpen(false); }}
+                  className="w-full text-left py-4 font-medium text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-gray-800 hover:text-blue-600 transition-colors"
+                >
+                  {/* <Workflow size={18} className="text-slate-500 dark:text-slate-400" /> */}
+                  Projects
                 </button>
 
                 <button

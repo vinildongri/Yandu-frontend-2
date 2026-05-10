@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Logo from "@/components/Logo";
 
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,47 +12,46 @@ const Login = () => {
 
   const router = useRouter();
 
-
   const submitHandle = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ email, password })
-    });
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ email, password })
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) {
-      if (data.errors && Array.isArray(data.errors)) {
-        data.errors.forEach((err: any) => {
-          toast.error(err.message);
-        });
-      } else {
-        toast.error(data.message || "Something went wrong");
+      if (!res.ok) {
+        if (data.errors && Array.isArray(data.errors)) {
+          data.errors.forEach((err: any) => {
+            toast.error(err.message);
+          });
+        } else {
+          toast.error(data.message || "Something went wrong");
+        }
+        return;
       }
-      return;
+
+      toast.success("Login successful !");
+
+      router.push("/");
+
+    } catch (error) {
+      toast.error("Server error. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    toast.success("Login successful !");
-
-    router.push("/");
-
-  } catch (error) {
-    toast.error("Server error. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className="min-h-screen bg-white dark:bg-black flex flex-col items-center pt-22 px-4 font-sans text-[#0f1111] dark:text-white selection:bg-[#c8f3fa] dark:selection:bg-blue-900">
-      
+
       {/* Logo */}
       <div className="mb-4 mt-2">
         <Logo className="dark:invert" />
@@ -61,11 +59,11 @@ const Login = () => {
 
       {/* Main Login Box */}
       <div className="w-full max-w-[350px] border border-[#ddd] dark:border-gray-800 bg-white dark:bg-[#0a0a0a] rounded-[8px] p-[18px] pb-6 mb-6">
-        
+
         <h1 className="text-[28px] font-normal leading-[1.2] mb-4 text-[#0f1111] dark:text-white">Sign in</h1>
 
         <form onSubmit={submitHandle}>
-          
+
           {/* Email Input */}
           <div className="mb-3">
             <label className="block text-[13px] font-bold mb-1 pl-0.5">
@@ -86,14 +84,14 @@ const Login = () => {
               <label className="text-[13px] font-bold pl-0.5">
                 Password
               </label>
-              <p 
+              <p
                 onClick={() => router.push("/password/forgot")}
                 className="text-[12px] text-[#0066c0] dark:text-blue-500 hover:text-[#c40000] dark:hover:text-white hover:underline cursor-pointer"
               >
                 Forgot your password?
               </p>
             </div>
-            
+
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -115,9 +113,37 @@ const Login = () => {
           {/* Premium Sign-in Button (Midnight Navy) */}
           <button
             type="submit"
-            className="w-full cursor-pointer bg-[#0A2540] hover:bg-[#001428] dark:bg-[#1E3A8A] dark:hover:bg-[#172554] text-white text-[13px] py-[6px] px-3 rounded-[8px] transition-colors mb-4 flex justify-center items-center h-8 font-medium shadow-sm"
+            disabled={loading}
+            className={`w-full bg-[#0A2540] hover:bg-[#001428] dark:bg-[#1E3A8A] dark:hover:bg-[#172554] text-white text-[13px] py-[6px] px-3 rounded-[8px] transition-colors mb-4 flex justify-center items-center h-8 font-medium shadow-sm ${loading ? "cursor-not-allowed opacity-70" : "cursor-pointer"
+              }`}
           >
-            Sign in
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+                Signing in...
+              </>
+            ) : (
+              "Sign in"
+            )}
           </button>
         </form>
 

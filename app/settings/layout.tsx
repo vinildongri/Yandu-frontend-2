@@ -25,6 +25,7 @@ const SettingsLayout = ({
                 { path: '/profile', label: 'My Profile' },
                 { path: '/update-profile', label: 'Update Profile' },
                 { path: '/settings/update-password', label: 'Update Password' },
+                { path: '/project-management', label: 'My Projects'}
             ]
         }
     ];

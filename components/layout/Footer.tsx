@@ -16,7 +16,7 @@ const Footer = () => {
     Discover: [
       { name: "Guides", href: "/guides" },
       { name: "Billing & Payments", href: "/billing-payments" },
-      { name: "Project Management", href: "/project-management" },
+      { name: "workflow", href: "/workflow" },
     ],
     Resources: [
       { name: "Business Cost Calculator", href: "/business-cost" },

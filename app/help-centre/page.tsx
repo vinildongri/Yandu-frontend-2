@@ -54,12 +54,12 @@ const router = useRouter()
     },
     {
       id: 3,
-      title: "Project Management",
+      title: "workflow",
       description:
         "How we track progress, handle revisions, and communicate during the development phase.",
       icon: <Settings size={28} />,
       color: "purple",
-      href: "/project-management",
+      href: "/workflow",
     },
     {
       id: 4,
