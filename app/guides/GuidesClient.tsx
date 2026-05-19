@@ -44,15 +44,15 @@ const guidesData: Guide[] = [
         readTime: "6 min",
         date: "Jan 15, 2026",
     },
-    {
-        id: "web-app-dev-2",
-        title: "Mobile App: Cross-Platform vs Native",
-        excerpt: "Choosing between Kotlin/Swift and Flutter/React Native for your next app.",
-        category: "Development",
-        tag: "App Development",
-        readTime: "8 min",
-        date: "Jan 10, 2026",
-    },
+    // {
+    //     id: "web-app-dev",
+    //     title: "Mobile App: Cross-Platform vs Native",
+    //     excerpt: "Choosing between Kotlin/Swift and Flutter/React Native for your next app.",
+    //     category: "Development",
+    //     tag: "App Development",
+    //     readTime: "8 min",
+    //     date: "Jan 10, 2026",
+    // },
     {
         id: "api-backend-dev",
         title: "Securing Your Backend API",
@@ -121,7 +121,7 @@ const guidesData: Guide[] = [
 // --- 2. Sub-Components ---
 function GuideCard({ guide }: { guide: Guide }) {
     return (
-        <Link href={`/guides/${guide.id}`} className="group block h-full">
+        <Link href={`/services/${guide.id}`} className="group block h-full">
             <div className="h-full border border-slate-200 dark:border-slate-800 rounded-[2rem] p-8 bg-white dark:bg-[#111318] hover:border-[#3b82f6] hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
 
                 {/* Top Tag */}
