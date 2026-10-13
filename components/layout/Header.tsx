@@ -5,6 +5,8 @@ import { ThemeToggle } from '../ThemeToggle';
 import { useRouter, usePathname } from 'next/navigation'; // 1. Import usePathname
 import { HelpCircle, LogOut, Menu, Rocket, Settings, User, X } from 'lucide-react';
 import toast from 'react-hot-toast';
+import Logo2 from '../Logo2';
+import Logo from '../Logo';
 
 const Header = () => {
   const router = useRouter();
@@ -74,13 +76,16 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 w-full z-50 h-[76px] bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-colors">
+    <header className="fixed top-0 w-full z-50 h-[76px] bg-white/20 dark:bg-gray-950/0 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-colors">
 
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
         {/* Logo */}
         <a className="flex items-center gap-3" href="/">
-          <img src="/images/yandu_logo.png" alt="Logo" className="h-10 w-auto" />
-          <h1 className="text-2xl font-black text-slate-800 dark:text-white">Yandu<span className="text-blue-600">.</span></h1>
+          {/* <img src="/images/yandu_logo.png" alt="Logo" className="h-10 w-auto" /> */}
+          <div className="same-color-classes-as-the-Yandu-text">
+            <Logo2 className="h-12" />
+          </div>
+          {/* <h1 className="text-2xl font-black text-slate-800 dark:text-white">Yandu<span className="text-blue-600">.</span></h1> */}
         </a>
 
         {/* Action Right Area */}
